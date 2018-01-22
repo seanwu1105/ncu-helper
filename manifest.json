@@ -1,0 +1,28 @@
+{
+    "manifest_version": 2,
+    "name": "Ink for NCU LMS",
+    "author": "Sean Wu (2018 CSIE)",
+    "version": "1.0",
+    "version_name": "alpha test",
+    "description": "Change the design of NCU LMS webpage in more modern style.",
+    "icons": {
+        "128": "icon_128.png"
+    },
+    "page_action": {
+        "default_icon": {
+            "128": "icon_128.png"
+        },
+        "default_title": "YEAH!",
+        "default_popup": "popup.html"
+    },
+    "background": {
+        "scripts": ["checkCurrentTab.js"]
+    },
+    "content_scripts": [
+        {
+            "matches": ["https://lms.ncu.edu.tw/*"],
+            "js": ["main.js"]
+        }
+    ],
+    "permissions": ["tabs"]
+}
