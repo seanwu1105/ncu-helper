@@ -6,24 +6,31 @@
     "version_name": "alpha test",
     "description": "Block the logout timer and change the design of NCU LMS webpage in more modern style.",
     "icons": {
-        "128": "icon_128.png"
+        "128": "images/icon_128.png"
     },
-    "page_action": {
+    "browser_action": {
         "default_icon": {
-            "128": "icon_128.png"
+            "128": "images/icon_128.png"
         },
         "default_title": "YEAH!",
         "default_popup": "popup.html"
     },
     "background": {
-        "scripts": ["background.js"]
+        "scripts": ["scripts/background.js"]
     },
     "content_scripts": [{
-        "matches": ["https://lms.ncu.edu.tw/*"],
-        "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
-        "css": ["main.css"],
-        "js": ["main.js"]
-    }],
+            "matches": ["https://lms.ncu.edu.tw/*"],
+            "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
+            "js": ["scripts/document_start.js"],
+            "run_at": "document_start"
+        },
+        {
+            "matches": ["https://lms.ncu.edu.tw/*"],
+            "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
+            "js": ["scripts/document_end.js"],
+            "run_at": "document_end"
+        }
+    ],
     "permissions": ["tabs", "webRequest", "webRequestBlocking", "*://lms.ncu.edu.tw/*"],
-    "web_accessible_resources": ["images/NCULogo.svg"]
+    "web_accessible_resources": ["images/NCULogo.svg", "main.css"]
 }

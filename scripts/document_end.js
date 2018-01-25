@@ -1,8 +1,8 @@
-"use strict"
+"use strict";
 
 // block the logout timer from counting down
 var script = document.createElement('script');
-script.appendChild(document.createTextNode('CC.timer.clear();'));
+script.appendChild(document.createTextNode('if(typeof CC.timer != "undefined"){CC.timer.clear();console.log("Logout timer has stopped")}'));
 (document.body || document.head || document.documentElement).appendChild(script);
 
 // add LMS logo
