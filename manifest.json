@@ -1,10 +1,10 @@
 {
     "manifest_version": 2,
-    "name": "Ink for NCU LMS",
+    "name": "NCU LMS Sucks",
     "author": "Sean Wu (2018 CSIE)",
     "version": "1.0",
     "version_name": "alpha test",
-    "description": "Change the design of NCU LMS webpage in more modern style.",
+    "description": "Block the logout timer and change the design of NCU LMS webpage in more modern style.",
     "icons": {
         "128": "icon_128.png"
     },
@@ -16,13 +16,14 @@
         "default_popup": "popup.html"
     },
     "background": {
-        "scripts": ["checkCurrentTab.js"]
+        "scripts": ["background.js"]
     },
-    "content_scripts": [
-        {
-            "matches": ["https://lms.ncu.edu.tw/*"],
-            "js": ["main.js"]
-        }
-    ],
-    "permissions": ["tabs"]
+    "content_scripts": [{
+        "matches": ["https://lms.ncu.edu.tw/*"],
+        "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
+        "css": ["main.css"],
+        "js": ["main.js"]
+    }],
+    "permissions": ["tabs", "webRequest", "webRequestBlocking", "*://lms.ncu.edu.tw/*"],
+    "web_accessible_resources": ["images/NCULogo.svg"]
 }
