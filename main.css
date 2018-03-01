@@ -87,7 +87,7 @@ input[type=password]:focus {
     position: fixed !important;
     top: 0 !important;
     border-bottom: initial !important;
-    z-index: 9999;
+    z-index: 999;
 }
 
 #ccQHeader {
@@ -279,6 +279,13 @@ table.ccLayout>tbody>tr.ccHover:hover {
 
 #calNav {
     background-color: #4f5359 !important;
+}
+
+#annPopupChannel {
+    height: initial !important;
+    top: 70px !important;
+    background: #4f5359 !important;
+    z-index: 100 !important;
 }
 
 .ccToolbar {
