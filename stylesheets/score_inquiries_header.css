@@ -1,0 +1,28 @@
+body {
+    margin: 4px !important;
+    background-color: initial !important;
+}
+
+center {
+    display: none !important;
+}
+
+header {
+    margin-left: 30px;
+}
+
+#logo {
+    display: inline-block;
+    height: 45px;
+    vertical-align: middle;
+}
+
+#logo>img {
+    height: 100%;
+    vertical-align: middle;
+}
+
+#logo>span {
+    font-size: 16px !important;
+    color: white !important;
+}

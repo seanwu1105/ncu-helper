@@ -1,0 +1,116 @@
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+body {
+    background-color: initial !important;
+    font-family: 'Noto Sans TC', sans-serif !important;
+}
+
+body>p {
+    text-align: right;
+    margin: 0;
+}
+
+body>p>font {
+    color: #bbbbbb !important;
+}
+
+tr {
+    height: 40px !important;
+}
+
+td {
+    padding: 8px 15px 8px 15px !important;
+    color: #e9e9e9;
+    font-family: inherit !important;
+    font-size: 16px !important;
+}
+
+.list {
+    background-color: #363940 !important;
+}
+
+.list1 {
+    background-color: #4F5359 !important;
+}
+
+.list1:hover {
+    background-color: #7D848C !important;
+    transition: background-color 0.2s ease !important;
+}
+
+.list3 {
+    background-color: #2d364b !important;
+}
+
+tr.selected {
+    background-color: #4f83b6 !important;
+}
+
+/* GPA calculator */
+
+#GPA {
+    width: 100%;
+    display: table;
+    background-color: #4F5359;
+    font-size: 16px;
+    color: white;
+    white-space: nowrap;
+}
+
+#GPATitle {
+    display: table-cell;
+    width: 10%;
+    padding: 20px;
+    background-color: #363940;
+}
+
+#GPAPoints {
+    display: table-cell;
+    width: 10%;
+    padding: 20px;
+}
+
+#GPAModes {
+    display: table-cell;
+    width: 40%;
+    padding: 20px;
+}
+
+#GPA input {
+    display: none;
+}
+
+#GPA label {
+    color: #777;
+    display: inline-block;
+    margin-right: 20px;
+}
+
+#GPA span.big {
+    background-color: #22262b;
+    border-radius: 50% 50% 50% 50%;
+    display: inline-block;
+    height: 12px;
+    margin-bottom: -11px;
+    margin-right: 9px;
+    padding: 8px;
+    position: relative;
+    top: -3px;
+    width: 12px;
+}
+
+#GPA span.small {
+    border-radius: 50% 50% 50% 50%;
+    display: block;
+    height: 100%;
+    transition: background 0.4s ease 0s;
+    width: 100%;
+}
+
+#GPA input[type="radio"]:checked+label {
+    color: #ffffff;
+}
+
+#GPA input[type="radio"]:checked+label span.small {
+    background-color: rgba(255, 64, 64, 0.8);
+    opacity: 1;
+}

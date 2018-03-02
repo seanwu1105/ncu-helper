@@ -1,0 +1,41 @@
+html,
+body {
+    background-color: #232429 !important;
+    height: 100%;
+}
+
+/* iframe heights */
+.container-fluid,
+.row,
+.col-xs-12 {
+    height: 100% !important;
+}
+
+#myFrame {
+    height: 99% !important;
+}
+
+/* bootstrap panel */
+.panel {
+    background-color: #4f5359 !important;
+}
+
+.panel-body {
+    color: #e9e9e9 !important;
+}
+
+.panel-body a {
+    color: #e9e9e9 !important;
+}
+
+.panel-body a:hover {
+    color: #ffffff !important;
+}
+
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #454a50 !important;
+}
+
+.table-hover > tbody > tr:hover {
+    background-color: #7d848c !important;
+}
