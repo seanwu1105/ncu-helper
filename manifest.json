@@ -16,57 +16,32 @@
         "default_popup": "popup.html"
     },
     "background": {
-        "scripts": [
-            "scripts/background.js"
-        ]
+        "scripts": ["scripts/background.js"]
     },
-    "content_scripts": [
-        {
-            "matches": [
-                "https://lms.ncu.edu.tw/*"
-            ],
-            "exclude_matches": [
-                "https://lms.ncu.edu.tw/rss/*"
-            ],
-            "css": [
-                "stylesheets/lms.css"
-            ],
+    "content_scripts": [{
+            "matches": ["https://lms.ncu.edu.tw/*"],
+            "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
+            "css": ["stylesheets/lms.css"],
             "all_frames": true,
             "run_at": "document_start"
         },
         {
-            "matches": [
-                "https://lms.ncu.edu.tw/*"
-            ],
-            "exclude_matches": [
-                "https://lms.ncu.edu.tw/rss/*"
-            ],
-            "js": [
-                "scripts/lms.js"
-            ],
+            "matches": ["https://lms.ncu.edu.tw/*"],
+            "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
+            "js": ["scripts/lms.js"],
             "all_frames": true,
             "run_at": "document_end"
         },
         {
-            "matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/*"
-            ],
-            "exclude_matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"
-            ],
-            "css": [
-                "stylesheets/score_inquiries.css"
-            ],
+            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
+            "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
+            "css": ["stylesheets/score_inquiries.css"],
             "all_frames": true,
             "run_at": "document_start"
         },
         {
-            "matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/*"
-            ],
-            "exclude_matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"
-            ],
+            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
+            "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
             "js": [
                 "scripts/jquery-3.3.1.min.js",
                 "scripts/score_inquiries.js"
@@ -75,24 +50,21 @@
             "run_at": "document_end"
         },
         {
-            "matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"
-            ],
-            "css": [
-                "stylesheets/score_inquiries_header.css"
-            ],
+            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
+            "css": ["stylesheets/score_inquiries_header.css"],
             "all_frames": true,
             "run_at": "document_start"
         },
         {
-            "matches": [
-                "https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"
-            ],
-            "js": [
-                "scripts/score_inquiries_header.js"
-            ],
+            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
+            "js": ["scripts/score_inquiries_header.js"],
             "all_frames": true,
             "run_at": "document_end"
+        },
+        {
+            "matches": ["https://cis.ncu.edu.tw/grad/index.php*"],
+            "css": ["stylesheets/graduate.css"],
+            "run_at": "document_start"
         },
         {
             "matches": [
@@ -102,9 +74,7 @@
                 "https://portal.ncu.edu.tw/system/147",
                 "https://portal.ncu.edu.tw/system/162"
             ],
-            "css": [
-                "stylesheets/portal.css"
-            ],
+            "css": ["stylesheets/portal.css"],
             "run_at": "document_start"
         }
     ],

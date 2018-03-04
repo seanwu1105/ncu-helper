@@ -1,4 +1,8 @@
-"use strict"
+"use strict";
+
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+*/
 
 // change the height of top bar (header) frame in frameset.
 parent.document.getElementsByTagName('frameset')[0].rows = '56, *';

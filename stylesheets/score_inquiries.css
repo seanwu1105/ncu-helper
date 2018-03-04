@@ -1,3 +1,7 @@
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+*/
+
 @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
 body {
     background-color: initial !important;
@@ -42,7 +46,7 @@ td {
 }
 
 tr.selected {
-    background-color: #4f83b6 !important;
+    background-color: rgba(64, 124, 255, 0.8) !important;
 }
 
 /* GPA calculator */

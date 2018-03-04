@@ -1,3 +1,9 @@
+"use strict";
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+** This code is some kind of messy but I don't give a fuck. After all, it works.
+*/
+
 var centerBody = document.getElementsByTagName('center')[0]
 if (centerBody) {
     var mainTable = document.getElementsByTagName('table')[0];

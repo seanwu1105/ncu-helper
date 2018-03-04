@@ -1,0 +1,50 @@
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+*/
+
+@import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+body {
+    background-color: #232429;
+    color: #cfecff;
+    font-family: 'Noto Sans TC', sans-serif !important;
+}
+
+table {
+    width: 100%;
+}
+
+tr {
+    height: 40px;
+}
+
+tr:hover {
+    opacity: .85;
+    transition: background-color 0.2s ease !important;
+}
+
+td {
+    padding: 8px 15px 8px 15px !important;
+}
+
+font[color="#0000ff"] {
+    color: white !important;
+}
+
+font[color="#660033"] {
+    color: #e9e9e9 !important;
+}
+
+tr[bgcolor="#0000ff"] {
+    background-color: #4F5359 !important;
+}
+
+tr[bgcolor="#ccff99"],
+tr[bgcolor="#e9e9e9"] {
+    background-color: #363940 !important;
+}
+
+tr[bgcolor="#a8a8a8"],
+tr[bgcolor="#b9b9b9"],
+tr[bgcolor="#c9c9c9"] {
+    background-color: #2d364b !important;
+}

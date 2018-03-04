@@ -1,5 +1,9 @@
 "use strict";
 
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+*/
+
 // block the logout timer from counting down.
 var script = document.createElement('script');
 script.appendChild(document.createTextNode('if(typeof CC.timer != "undefined"){CC.timer.clear();console.log("Logout timer has stopped")}'));

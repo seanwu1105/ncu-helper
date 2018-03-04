@@ -1,5 +1,9 @@
 "use strict";
 
+/* Author: Sean Wu
+** NCU CSIE, Taiwan
+*/
+
 var enableList = ["lms.ncu.edu.tw", "portal.ncu.edu.tw"]
 
 // Check the webpage
