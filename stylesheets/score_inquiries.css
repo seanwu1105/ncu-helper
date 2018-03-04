@@ -33,7 +33,7 @@ td {
 }
 
 .list1:hover {
-    background-color: #7D848C !important;
+    opacity: .85;
     transition: background-color 0.2s ease !important;
 }
 
@@ -66,13 +66,42 @@ tr.selected {
 #GPAPoints {
     display: table-cell;
     width: 10%;
-    padding: 20px;
+    padding: 10px;
+    font-size: 22px;
 }
 
 #GPAModes {
     display: table-cell;
-    width: 40%;
+    width: 10%;
     padding: 20px;
+}
+
+#GPA button {
+    display: table-cell;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    color: white;
+    background-color: #7D848C;
+    border: #bbbbbb;
+    cursor: pointer;
+    transition: all 150ms linear;
+    border: 0 none;
+}
+
+#GPA button:hover {
+    transition: all 150ms linear;
+    opacity: .85;
+}
+
+#GPA button:active {
+    transition: all 150ms linear;
+    opacity: .5;
+}
+
+#GPA button:focus {
+    outline: 1px dotted #959595;
+    outline-offset: -4px;
 }
 
 #GPA input {
@@ -83,6 +112,7 @@ tr.selected {
     color: #777;
     display: inline-block;
     margin-right: 20px;
+    cursor: pointer;
 }
 
 #GPA span.big {
@@ -96,6 +126,7 @@ tr.selected {
     position: relative;
     top: -3px;
     width: 12px;
+    cursor: pointer;
 }
 
 #GPA span.small {
@@ -104,6 +135,7 @@ tr.selected {
     height: 100%;
     transition: background 0.4s ease 0s;
     width: 100%;
+    cursor: pointer;
 }
 
 #GPA input[type="radio"]:checked+label {
@@ -111,6 +143,6 @@ tr.selected {
 }
 
 #GPA input[type="radio"]:checked+label span.small {
-    background-color: rgba(255, 64, 64, 0.8);
+    background-color: rgba(64, 124, 255, 0.8);
     opacity: 1;
 }
