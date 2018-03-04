@@ -28,6 +28,10 @@ td {
     font-size: 16px !important;
 }
 
+center {
+    margin-bottom: 70px;
+}
+
 .list {
     background-color: #363940 !important;
 }
@@ -58,6 +62,9 @@ tr.selected {
     font-size: 16px;
     color: white;
     white-space: nowrap;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 #GPATitle {
@@ -71,13 +78,14 @@ tr.selected {
     display: table-cell;
     width: 10%;
     padding: 10px;
+    background-color: #6f757c;
     font-size: 22px;
 }
 
 #GPAModes {
     display: table-cell;
-    width: 10%;
     padding: 20px;
+    width: 20%;
 }
 
 #GPA button {

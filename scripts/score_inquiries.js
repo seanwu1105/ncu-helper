@@ -1,8 +1,8 @@
 "use strict";
 /* Author: Sean Wu
-** NCU CSIE, Taiwan
-** This code is some kind of messy but I don't give a fuck. After all, it works.
-*/
+ ** NCU CSIE, Taiwan
+ ** This code is some kind of messy but I don't give a fuck. After all, it works.
+ */
 
 var centerBody = document.getElementsByTagName('center')[0]
 if (centerBody) {
@@ -12,7 +12,7 @@ if (centerBody) {
     GPAHeader.innerHTML = 'GPA Score';
     mainTable.children[0].firstChild.appendChild(GPAHeader);
     var scoresList = mainTable.children[0].querySelectorAll('tr.list1');
-    for (i = 0; i < scoresList.length; i++)
+    for (var i = 0; i < scoresList.length; i++)
         scoresList[i].appendChild(document.createElement('td'));
 
     /* Append GPA score for each row. */
@@ -103,10 +103,14 @@ if (centerBody) {
 
     /* Select Actions */
     var selectAllBtn = document.createElement('button');
+    var selectMajorBtn = document.createElement('button');
+    var selectLast60Btn = document.createElement('button');
+    var selectSJBtn = document.createElement('button');
     var deselectAllBtn = document.createElement('button');
-    selectAllBtn.id = 'selectAll';
-    deselectAllBtn.id = 'deselectAll';
     selectAllBtn.innerHTML = 'Select All';
+    selectMajorBtn.innerHTML = 'Select All Major';
+    selectLast60Btn.innerHTML = 'Select Last 60 Credits';
+    selectSJBtn.innerHTML = 'Select All Senior/Junior Courses';
     deselectAllBtn.innerHTML = 'Deselect All';
 
     GPA.id = 'GPA';
@@ -120,23 +124,63 @@ if (centerBody) {
     GPA.appendChild(GPAPoints);
     GPA.appendChild(GPAModes);
     GPA.appendChild(selectAllBtn);
+    GPA.appendChild(selectMajorBtn);
+    GPA.appendChild(selectLast60Btn);
+    GPA.appendChild(selectSJBtn);
     GPA.appendChild(deselectAllBtn);
     centerBody.appendChild(GPA);
 
     document.getElementById('ModeNCU(4.0)').checked = true;
 
+    function deselectAll() {
+        for (var i = 0; i < scoresList.length; i++)
+            if (scoresList[i].classList.contains('selected'))
+                scoresList[i].classList.remove('selected');
+        calculateGPA();
+    }
+
+    deselectAllBtn.onclick = deselectAll;
+
     selectAllBtn.onclick = function () {
-        for (i = 0; i < scoresList.length; i++) {
-            if (isValidScore(scoresList[i]) && !scoresList[i].classList.contains('selected'))
+        for (var i = 0; i < scoresList.length; i++)
+            if (isValidScore(scoresList[i]) &&
+                !scoresList[i].classList.contains('selected'))
                 scoresList[i].classList.add('selected');
+        calculateGPA();
+    }
+    selectMajorBtn.onclick = function () {
+        deselectAll();
+        for (var i = 0; i < scoresList.length; i++)
+            if (isValidScore(scoresList[i]) &&
+                !scoresList[i].classList.contains('selected') &&
+                scoresList[i].children[1].innerHTML === "必")
+                scoresList[i].classList.add('selected');
+        calculateGPA();
+    }
+    selectLast60Btn.onclick = function () {
+        deselectAll();
+        var i = scoresList.length - 1;
+        var totalCredits = 0;
+        while (totalCredits < 60 && i >= 0) {
+            if (isValidScore(scoresList[i]) &&
+                !scoresList[i].classList.contains('selected') &&
+                Number(scoresList[i].children[3].innerHTML) !== 0) {
+                totalCredits += Number(scoresList[i].children[3].innerHTML)
+                scoresList[i].classList.add('selected');
+            }
+            i--;
         }
         calculateGPA();
     }
-    deselectAllBtn.onclick = function () {
-        for (i = 0; i < scoresList.length; i++) {
-            if (scoresList[i].classList.contains('selected'))
-                scoresList[i].classList.remove('selected');
-        }
+
+    selectSJBtn.onclick = function () {
+        deselectAll();
+        var firstYear = Number(scoresList[0].firstChild.innerHTML.slice(0, -1));
+        for (var i = 0; i < scoresList.length; i++)
+            if (isValidScore(scoresList[i]) &&
+                !scoresList[i].classList.contains('selected') &&
+                Number(scoresList[i].firstChild.innerHTML.slice(0, -1)) - firstYear >= 2)
+                scoresList[i].classList.add('selected');
         calculateGPA();
     }
 
@@ -148,7 +192,7 @@ if (centerBody) {
     })
 
     function insertGPATableData(modeFunc) {
-        for (i = 0; i < scoresList.length; i++)
+        for (var i = 0; i < scoresList.length; i++)
             if (isValidScore(scoresList[i]))
                 scoresList[i].children[5].innerHTML = modeFunc(scoresList[i].children[4].innerHTML);
         calculateGPA();
@@ -157,12 +201,12 @@ if (centerBody) {
     function calculateGPA() {
         var totalGPA = 0;
         var totalCredits = 0;
-        for (i = 0; i < scoresList.length; i++) {
-            if (isValidScore(scoresList[i]) && scoresList[i].classList.contains('selected')) {
+        for (var i = 0; i < scoresList.length; i++)
+            if (isValidScore(scoresList[i]) &&
+                scoresList[i].classList.contains('selected')) {
                 totalGPA += Number(scoresList[i].children[3].innerHTML) * Number(scoresList[i].children[5].innerHTML);
                 totalCredits += Number(scoresList[i].children[3].innerHTML);
             }
-        }
         if (totalCredits === 0)
             GPAPoints.innerHTML = 0;
         else
