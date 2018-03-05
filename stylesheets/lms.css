@@ -35,8 +35,9 @@ a>span {
     color: #cfecff !important;
 }
 
-div {
-    color: #ffffff !important;
+div,
+p {
+    color: #e9e9e9 !important;
 }
 
 select {
@@ -288,6 +289,10 @@ table.ccLayout>tbody>tr.ccHover:hover {
     top: 70px !important;
     background: #4f5359 !important;
     z-index: 100 !important;
+}
+
+#ccPadding {
+    background-color: #232429 !important;
 }
 
 .ccToolbar {

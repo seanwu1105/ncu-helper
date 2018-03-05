@@ -15,6 +15,9 @@ Add some features and change the design of NCU webpages in more modern style.
 * Last 60 Credits GPA
 * Senior/Junior GPA
 ### Calculating Modes
+
+<img src="https://i.imgur.com/QcwunE7.gif">
+
 #### NCU (4.0)
 
 | Score | 100-80 | 79-70 | 69-60 | 59-1 | 0 |
