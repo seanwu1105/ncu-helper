@@ -9,11 +9,13 @@ Add some features and change the design of NCU webpages in more modern style.
 1. Beautify LMS (Learning Management System)
 2. Beautify NCU Portal Login Page
 3. Beautify NCU CIS Score Inquiries Webpages and Automatically Calculate GPA
+
 ### GPA Support
 * Overall GPA
 * Major GPA
 * Last 60 Credits GPA
 * Senior/Junior GPA
+
 ### Calculating Modes
 
 <img src="https://i.imgur.com/QcwunE7.gif">
