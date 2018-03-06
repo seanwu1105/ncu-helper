@@ -11,6 +11,8 @@ script.appendChild(document.createTextNode('if(typeof CC.timer != "undefined"){C
 
 // add LMS logo.
 var ccTabsL = document.getElementById('ccTabsL');
+if (ccTabsL)
+    console.log("GOTIT!");
 var homepageLink = document.createElement('a');
 var logo = document.createElement('div');
 var icon = document.createElement('img');
@@ -31,6 +33,5 @@ ccTabsR.appendChild(document.getElementById('ccQTool'));
 
 // change the .add DOM node.
 var classAdd = document.getElementsByClassName('add');
-for (var i = 0; i < classAdd.length; i++) {
+for (var i = 0; i < classAdd.length; i++)
     classAdd.item(i).appendChild(document.createTextNode('+'));
-}

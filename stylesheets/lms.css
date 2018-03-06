@@ -49,7 +49,6 @@ select:hover {
     background-color: #7d848c !important;
 }
 
-
 /* login and inputs*/
 
 #loginBtn {
@@ -82,7 +81,6 @@ input[type=password]:focus {
 ::-webkit-input-placeholder {
     color: #e9e9e9 !important;
 }
-
 
 /* header and navigation bar */
 
@@ -186,7 +184,6 @@ ul.ccPDMenu a:focus {
     background-color: #4f5359 !important;
 }
 
-
 /* left navigation bar */
 
 #ccNavMenu {
@@ -259,7 +256,6 @@ table.ccLayout>tbody>tr.ccHover:hover {
     transition: none !important;
 }
 
-
 /* main container */
 
 #ccNavBody {
@@ -291,8 +287,8 @@ table.ccLayout>tbody>tr.ccHover:hover {
     z-index: 100 !important;
 }
 
-#ccPadding {
-    background-color: #232429 !important;
+.ccPadding {
+    background-color: initial !important;
 }
 
 .ccToolbar {
@@ -514,4 +510,168 @@ tr.ccGradShade {
 
 .cmap-index ul li {
     height: initial !important;
+}
+
+/* Icons Color Overlay */
+
+.ptool A.pcalendar,
+.ptool A.ptasks,
+.ptool A.pcontacts,
+.ptool A.pfiles,
+.ptool A.pwebpages,
+.ptool A.pbookmark,
+.ptool A.palbums,
+.ptool A.pblogs,
+.ptool A.ppreferences,
+.ptool A.peportfolio,
+.icon-msg,
+.ccStudent,
+#ccSC>ul>li>div>a {
+    background-image: none !important;
+}
+
+.ptool A.pcalendar::after,
+.ptool A.ptasks::after,
+.ptool A.pcontacts::after,
+.ptool A.pfiles::after,
+.ptool A.pwebpages::after,
+.ptool A.pbookmark::after,
+.ptool A.palbums::after,
+.ptool A.pblogs::after,
+.ptool A.ppreferences::after,
+.ptool A.peportfolio::after {
+    content: "";
+    position: absolute;
+    left: 5px;
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+    background-repeat: no-repeat;
+}
+
+#ccSCS22\.0-23\.0_1>div>a[style]::after,
+#ccSCS22\.0-23\.0_2>div>a[style]::after,
+#ccSCS22\.0-23\.0_5>div>a[style]::after,
+#ccSCS22\.0-23\.0_55>div>a[style]::after,
+#ccSCS22\.0-23\.0_14>div>a[style]::after,
+#ccSCS22\.0-23\.0_13>div>a[style]::after,
+#ccSCS22\.0-23\.0_7>div>a[style]::after,
+#ccSCS22\.0-23\.0_11>div>a[style]::after,
+#ccSCS22\.0-23\.0_56>div>a[style]::after {
+    content: "";
+    position: absolute;
+    left: 15px;
+    width: 30px;
+    height: 30px;
+    filter: brightness(0) invert(1);
+    background-repeat: no-repeat;
+}
+
+.ptool A.pcalendar::after {
+    background-image: url(i/24/calendar.png);
+}
+
+.ptool A.ptasks::after {
+    background-image: url(i/24/tasks.png);
+}
+
+.ptool A.pcontacts::after {
+    background-image: url(i/24/contacts.png);
+}
+
+.ptool A.pfiles::after {
+    background-image: url(i/24/files.png);
+}
+
+.ptool A.pwebpages::after {
+    background-image: url(i/24/webpages.png);
+}
+
+.ptool A.pbookmark::after {
+    background-image: url(i/24/bookmark.png);
+}
+
+.ptool A.palbums::after {
+    background-image: url(i/24/albums.png);
+}
+
+.ptool A.pblogs::after {
+    background-image: url(i/24/blogs.png);
+}
+
+.ptool A.ppreferences::after {
+    background-image: url(i/24/preferences.png);
+}
+
+.ptool A.peportfolio::after {
+    background-image: url(i/32g/studentEPortfolio.png);
+}
+
+#ccSCS22\.0-23\.0_1>div>a[style]::after {
+    background-image: url(/i/32g/fullMenu.png);
+}
+
+#ccSCS22\.0-23\.0_2>div>a[style]::after {
+    background-image: url(/i/32g/home.png);
+}
+
+#ccSCS22\.0-23\.0_5>div>a[style]::after {
+    background-image: url(/i/32g/announcements.png);
+}
+
+#ccSCS22\.0-23\.0_55>div>a[style]::after {
+    background-image: url(/i/32g/studentTools.png);
+}
+
+#ccSCS22\.0-23\.0_14>div>a[style]::after {
+    background-image: url(/i/32g/syllabus.png);
+}
+
+#ccSCS22\.0-23\.0_13>div>a[style]::after {
+    background-image: url(/i/32g/sharedFiles.png);
+}
+
+#ccSCS22\.0-23\.0_7>div>a[style]::after {
+    background-image: url(/i/32g/calendar.png);
+}
+
+#ccSCS22\.0-23\.0_11>div>a[style]::after {
+    background-image: url(/i/32g/messageBoard.png);
+}
+
+#ccSCS22\.0-23\.0_56>div>a[style]::after {
+    background-image: url(/i/32g/blog.png);
+}
+
+#ccNavShortcut .ccSCCollapse::after,
+#ccNavShortcut .ccSCExpand::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    filter: contrast(110%) invert(80%) brightness(150%);
+    background: url(/img/qp/arrowLeft.png) no-repeat !important;
+}
+
+.icon-msg::after,
+.ccStudent::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    filter: brightness(0) invert(90%);
+}
+
+.icon-msg::after {
+    background: url(i/icon-msg.png) no-repeat;
+}
+
+.ccStudent::after {
+    background: url(/i/student.png) no-repeat;
+}
+
+#mcTabs #newTabBtn:before,
+#mcTabs #cus:before,
+#mcTabs #actIcon:before {
+    filter: brightness(0) invert(90%);
 }

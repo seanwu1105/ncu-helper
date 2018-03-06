@@ -12,8 +12,7 @@
         "default_icon": {
             "128": "images/icon_128.png"
         },
-        "default_title": "YEAH!",
-        "default_popup": "popup.html"
+        "default_title": "NCU Helper"
     },
     "background": {
         "scripts": ["scripts/background.js"]
@@ -69,10 +68,10 @@
         {
             "matches": [
                 "https://portal.ncu.edu.tw/",
-                "https://portal.ncu.edu.tw/chgpasswd",
-                "https://portal.ncu.edu.tw/login",
-                "https://portal.ncu.edu.tw/system/147",
-                "https://portal.ncu.edu.tw/system/162"
+                "https://portal.ncu.edu.tw/chgpasswd*",
+                "https://portal.ncu.edu.tw/login*",
+                "https://portal.ncu.edu.tw/system/147*",
+                "https://portal.ncu.edu.tw/system/162*"
             ],
             "css": ["stylesheets/portal.css"],
             "run_at": "document_start"
@@ -81,11 +80,7 @@
     "permissions": [
         "tabs",
         "webRequest",
-        "webRequestBlocking",
-        "*://lms.ncu.edu.tw/*"
+        "webRequestBlocking"
     ],
-    "web_accessible_resources": [
-        "images/NCULogo.svg",
-        "stylesheets/lms.css"
-    ]
+    "web_accessible_resources": ["images/*"]
 }
