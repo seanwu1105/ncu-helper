@@ -1,6 +1,10 @@
 # NCU Helper
 Add some features and change the design of NCU webpages in more modern style.
 
+<img src="https://i.imgur.com/OcwXEBk.png">
+<img src="https://i.imgur.com/R2joDQJ.png">
+<img src="https://i.imgur.com/hukqQzO.png">
+
 * Version: 0.5 (Alpha Test)
 * All calculation is running in **local** browser.
 
@@ -9,6 +13,7 @@ Add some features and change the design of NCU webpages in more modern style.
 1. Beautify LMS (Learning Management System)
 2. Beautify NCU Portal Login Page
 3. Beautify NCU CIS Score Inquiries Webpages and Automatically Calculate GPA
+4. Beautify NCU CIS Graduation Check List
 
 ### GPA Support
 * Overall GPA
