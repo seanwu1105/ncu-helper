@@ -524,6 +524,9 @@ tr.ccGradShade {
 .ptool A.pblogs,
 .ptool A.ppreferences,
 .ptool A.peportfolio,
+li[id^="R22\."]>a[style],
+li[id^="F22\."]>a[style],
+div.ccSCGroup>ul[role="menu"] li[role="menuitem"] a[style],
 .icon-msg,
 .ccStudent,
 #ccSC>ul>li>div>a {
@@ -549,15 +552,7 @@ tr.ccGradShade {
     background-repeat: no-repeat;
 }
 
-#ccSCS22\.0-23\.0_1>div>a[style]::after,
-#ccSCS22\.0-23\.0_2>div>a[style]::after,
-#ccSCS22\.0-23\.0_5>div>a[style]::after,
-#ccSCS22\.0-23\.0_55>div>a[style]::after,
-#ccSCS22\.0-23\.0_14>div>a[style]::after,
-#ccSCS22\.0-23\.0_13>div>a[style]::after,
-#ccSCS22\.0-23\.0_7>div>a[style]::after,
-#ccSCS22\.0-23\.0_11>div>a[style]::after,
-#ccSCS22\.0-23\.0_56>div>a[style]::after {
+li[id^="ccSCS22\."]>div>a[style]::after {
     content: "";
     position: absolute;
     left: 15px;
@@ -607,40 +602,52 @@ tr.ccGradShade {
     background-image: url(i/32g/studentEPortfolio.png);
 }
 
-#ccSCS22\.0-23\.0_1>div>a[style]::after {
+li#ccSCS22\.0-23\.0_1>div>a[style]::after {
     background-image: url(/i/32g/fullMenu.png);
 }
 
-#ccSCS22\.0-23\.0_2>div>a[style]::after {
+li#ccSCS22\.0-23\.0_2>div>a[style]::after {
     background-image: url(/i/32g/home.png);
 }
 
-#ccSCS22\.0-23\.0_5>div>a[style]::after {
+li#ccSCS22\.0-23\.0_5>div>a[style]::after {
     background-image: url(/i/32g/announcements.png);
 }
 
-#ccSCS22\.0-23\.0_55>div>a[style]::after {
+li#ccSCS22\.0-23\.0_55>div>a[style]::after {
     background-image: url(/i/32g/studentTools.png);
 }
 
-#ccSCS22\.0-23\.0_14>div>a[style]::after {
+li#ccSCS22\.0-23\.0_14>div>a[style]::after {
     background-image: url(/i/32g/syllabus.png);
 }
 
-#ccSCS22\.0-23\.0_13>div>a[style]::after {
+li#ccSCS22\.0-23\.0_13>div>a[style]::after {
     background-image: url(/i/32g/sharedFiles.png);
 }
 
-#ccSCS22\.0-23\.0_7>div>a[style]::after {
+li#ccSCS22\.0-23\.0_7>div>a[style]::after {
     background-image: url(/i/32g/calendar.png);
 }
 
-#ccSCS22\.0-23\.0_11>div>a[style]::after {
+li#ccSCS22\.0-23\.0_11>div>a[style]::after {
     background-image: url(/i/32g/messageBoard.png);
 }
 
-#ccSCS22\.0-23\.0_56>div>a[style]::after {
+li#ccSCS22\.0-23\.0_56>div>a[style]::after {
     background-image: url(/i/32g/blog.png);
+}
+
+li[id^="R22\."]::before,
+li[id^="F22\."]::before {
+    content: "";
+    width: 20px;
+    height: 28px;
+    padding: 7px 0;
+    position: absolute;
+    filter: brightness(0) invert(1);
+    background-size: 16px;
+    background: url(/img/list_dot.gif) no-repeat left !important;
 }
 
 #ccNavShortcut .ccSCCollapse::after,
@@ -672,6 +679,8 @@ tr.ccGradShade {
 
 #mcTabs #newTabBtn:before,
 #mcTabs #cus:before,
-#mcTabs #actIcon:before {
+#mcTabs #actIcon:before,
+img[src="i/members.png"],
+img[src="/i/location.png?05021258"] {
     filter: brightness(0) invert(90%);
 }
