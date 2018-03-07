@@ -529,7 +529,8 @@ li[id^="F22\."]>a[style],
 div.ccSCGroup>ul[role="menu"] li[role="menuitem"] a[style],
 .icon-msg,
 .ccStudent,
-#ccSC>ul>li>div>a {
+#ccSC>ul>li>div>a,
+div.ccSCGroupInd {
     background-image: none !important;
 }
 
@@ -552,7 +553,7 @@ div.ccSCGroup>ul[role="menu"] li[role="menuitem"] a[style],
     background-repeat: no-repeat;
 }
 
-li[id^="ccSCS22\."]>div>a[style]::after {
+li[id^="ccSCS22\."]>div>a[style]::before {
     content: "";
     position: absolute;
     left: 15px;
@@ -602,39 +603,39 @@ li[id^="ccSCS22\."]>div>a[style]::after {
     background-image: url(i/32g/studentEPortfolio.png);
 }
 
-li#ccSCS22\.0-23\.0_1>div>a[style]::after {
+li#ccSCS22\.0-23\.0_1>div>a[style]::before {
     background-image: url(/i/32g/fullMenu.png);
 }
 
-li#ccSCS22\.0-23\.0_2>div>a[style]::after {
+li#ccSCS22\.0-23\.0_2>div>a[style]::before {
     background-image: url(/i/32g/home.png);
 }
 
-li#ccSCS22\.0-23\.0_5>div>a[style]::after {
+li#ccSCS22\.0-23\.0_5>div>a[style]::before {
     background-image: url(/i/32g/announcements.png);
 }
 
-li#ccSCS22\.0-23\.0_55>div>a[style]::after {
+li#ccSCS22\.0-23\.0_55>div>a[style]::before {
     background-image: url(/i/32g/studentTools.png);
 }
 
-li#ccSCS22\.0-23\.0_14>div>a[style]::after {
+li#ccSCS22\.0-23\.0_14>div>a[style]::before {
     background-image: url(/i/32g/syllabus.png);
 }
 
-li#ccSCS22\.0-23\.0_13>div>a[style]::after {
+li#ccSCS22\.0-23\.0_13>div>a[style]::before {
     background-image: url(/i/32g/sharedFiles.png);
 }
 
-li#ccSCS22\.0-23\.0_7>div>a[style]::after {
+li#ccSCS22\.0-23\.0_7>div>a[style]::before {
     background-image: url(/i/32g/calendar.png);
 }
 
-li#ccSCS22\.0-23\.0_11>div>a[style]::after {
+li#ccSCS22\.0-23\.0_11>div>a[style]::before {
     background-image: url(/i/32g/messageBoard.png);
 }
 
-li#ccSCS22\.0-23\.0_56>div>a[style]::after {
+li#ccSCS22\.0-23\.0_56>div>a[style]::before {
     background-image: url(/i/32g/blog.png);
 }
 
@@ -666,7 +667,7 @@ li[id^="F22\."]::before {
     position: absolute;
     width: 24px;
     height: 24px;
-    filter: brightness(0) invert(90%);
+    filter: brightness(0) invert(95%);
 }
 
 .icon-msg::after {
@@ -675,6 +676,12 @@ li[id^="F22\."]::before {
 
 .ccStudent::after {
     background: url(/i/student.png) no-repeat;
+}
+
+div.ccSCGroupInd>a[style]::after {
+    content: ">";
+    color: #bbbbbb;
+    position: absolute;
 }
 
 #mcTabs #newTabBtn:before,
