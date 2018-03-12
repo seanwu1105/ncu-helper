@@ -2,20 +2,20 @@
     "manifest_version": 2,
     "name": "NCU Helper",
     "author": "Sean Wu (2018 CSIE)",
-    "version": "0.5",
-    "version_name": "alpha test",
+    "version": "1.0",
+    "version_name": "first public",
     "description": "Add some features and change the design of NCU webpages in more modern style.",
     "icons": {
         "128": "images/icon_128.png"
+    },
+    "background": {
+        "scripts": ["scripts/background.js"]
     },
     "browser_action": {
         "default_icon": {
             "128": "images/icon_128.png"
         },
         "default_title": "NCU Helper"
-    },
-    "background": {
-        "scripts": ["scripts/background.js"]
     },
     "content_scripts": [{
             "matches": ["https://lms.ncu.edu.tw/*"],
