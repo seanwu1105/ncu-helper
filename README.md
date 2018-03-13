@@ -41,7 +41,7 @@ Add some features and change the design of NCU webpages in more modern style.
 
 ## Installation
 
-1. 
+Install in Chrome Extension WebStore: https://goo.gl/YM69cw
 
 ## Motivation
 Some layouts of NCU website are rather ugly and dazzling. Also, calculating GPA
