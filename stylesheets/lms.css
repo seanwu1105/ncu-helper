@@ -51,14 +51,16 @@ select:hover {
 
 /* login and inputs*/
 
-#loginBtn {
+#loginBtn,
+input[type=submit][value=登入] {
     background: #4f5359 !important;
     border: initial !important;
     color: #ffffff !important;
     padding: 10px 20px 10px 20px !important;
 }
 
-#loginBtn:hover {
+#loginBtn:hover,
+input[type=submit][value=登入]:hover {
     background-color: #7d848c !important;
     cursor: pointer !important;
 }
@@ -137,6 +139,7 @@ input[type=password]:focus {
 .ccDialog {
     border: initial !important;
     border-radius: initial !important;
+    background: #363940 !important;
 }
 
 .ccDialog:hover {
@@ -157,6 +160,10 @@ input[type=password]:focus {
 
 .ccDFooter {
     background: #363940 !important;
+}
+
+div.ccShade:hover {
+    background: #4f5359 !important;
 }
 
 #ccTabs a {
@@ -226,7 +233,8 @@ div.ccMenu>div:hover {
     background-color: rgba(255, 255, 255, 0.2) !important;
 }
 
-div.ccMenuOn {
+div.ccMenuOn,
+div.ccShade {
     background-color: #363940 !important;
 }
 
@@ -394,6 +402,14 @@ table.ccLayout>tbody>tr.ccHover:hover {
     background-color: #4f5359 !important;
 }
 
+#ccSidebar .ccLI a:hover {
+    background: #4f5359 !important;
+}
+
+a.ccArrow:hover {
+    background: initial !important;
+}
+
 .title-box {
     background: #4f5359 !important;
 }
@@ -480,10 +496,12 @@ button.ccOp {
     border: initial !important;
     background: initial !important;
     border-radius: initial !important;
+    color: #e9e9e9 !important;
 }
 
 button.ccOp:hover {
     background: #7d848c !important;
+    color: #ffffff !important;
 }
 
 div.ccHArea.shade {
@@ -501,7 +519,7 @@ img[src="/img/cc/people_no_text.gif?05021258"] {
 
 .ccGradShade,
 tr.ccGradShade {
-    background-color: #363940 !important;
+    background: #363940 !important;
 }
 
 #myClassPage .ccItem2 {
@@ -530,8 +548,14 @@ div.ccSCGroup>ul[role="menu"] li[role="menuitem"] a[style],
 .icon-msg,
 .ccStudent,
 #ccSC>ul>li>div>a,
-div.ccSCGroupInd {
+div.ccSCGroupInd,
+li.ccQItem.account,
+li.ccQItem.logout {
     background-image: none !important;
+}
+
+li.ccQItem.account>a::before {
+
 }
 
 .ptool A.pcalendar::after,
@@ -553,7 +577,9 @@ div.ccSCGroupInd {
     background-repeat: no-repeat;
 }
 
-li[id^="ccSCS22\."]>div>a[style]::before {
+li[id^="ccSCS22\."]>div>a[style]::before,
+li.ccQItem.account>a::before,
+li.ccQItem.logout>a::before {
     content: "";
     position: absolute;
     left: 15px;
@@ -561,6 +587,16 @@ li[id^="ccSCS22\."]>div>a[style]::before {
     height: 30px;
     filter: brightness(0) invert(1);
     background-repeat: no-repeat;
+}
+
+li.ccQItem.account>a::before {
+    background-size: 22px;
+    background-image: url(/i/32g/profile.png);
+}
+
+li.ccQItem.logout>a::before {
+    background-size: 22px;
+    background-image: url(/i/32g/logout.png);
 }
 
 .ptool A.pcalendar::after {
@@ -687,7 +723,14 @@ div.ccSCGroupInd>a[style]::after {
 #mcTabs #newTabBtn:before,
 #mcTabs #cus:before,
 #mcTabs #actIcon:before,
-img[src="i/members.png"],
-img[src="/i/location.png?05021258"] {
+span.msgAlert::before,
+span.ccArrowDown,
+span.ccArrowUp,
+img[src^="i/members.png"],
+img[src^="/i/location.png"],
+img[src^="/i/cruiserassist.png"],
+img[src^="/i/edit.png"],
+img[src^="/i/search.png"],
+img[src^="/i/add.png"] {
     filter: brightness(0) invert(90%);
 }
