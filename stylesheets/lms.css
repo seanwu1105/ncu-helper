@@ -554,10 +554,6 @@ li.ccQItem.logout {
     background-image: none !important;
 }
 
-li.ccQItem.account>a::before {
-
-}
-
 .ptool A.pcalendar::after,
 .ptool A.ptasks::after,
 .ptool A.pcontacts::after,
