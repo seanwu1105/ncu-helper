@@ -504,11 +504,23 @@ button.ccOp:hover {
     color: #ffffff !important;
 }
 
+#viewSelector a,
+#viewSelector a.box {
+    border: initial !important;
+    background-color: #363940 !important;
+    transition: all 0.15s ease 0s !important;
+}
+
+#viewSelector a:hover,
+#viewSelector a.box:hover {
+    background-color: #4f5359 !important;
+}
+
 div.ccHArea.shade {
     background-color: #363940 !important;
 }
 
-img[src="/img/cc/people_no_text.gif?05021258"] {
+img[src^="/img/cc/people_no_text.gif"] {
     display: none !important;
 }
 
@@ -530,6 +542,11 @@ tr.ccGradShade {
     height: initial !important;
 }
 
+div[style*="background-color:#EEE"] {
+    background-color: #4f5359 !important;
+}
+
+
 /* Icons Color Overlay */
 
 .ptool A.pcalendar,
@@ -550,7 +567,16 @@ div.ccSCGroup>ul[role="menu"] li[role="menuitem"] a[style],
 #ccSC>ul>li>div>a,
 div.ccSCGroupInd,
 li.ccQItem.account,
-li.ccQItem.logout {
+li.ccQItem.logout,
+.ccQList>li.ccQItem.email,
+.ccQList>LI.ccQItem.calendar,
+.ccQList>LI.ccQItem.tasks,
+.ccQList>LI.ccQItem.contacts,
+.ccQList>LI.ccQItem.files,
+.ccQList>LI.ccQItem.webpages,
+.ccQList>LI.ccQItem.bookmark,
+.ccQList>LI.ccQItem.albums,
+.ccQList>LI.ccQItem.blogs {
     background-image: none !important;
 }
 
@@ -671,6 +697,48 @@ li#ccSCS22\.0-23\.0_56>div>a[style]::before {
     background-image: url(/i/32g/blog.png);
 }
 
+.ccQList>li.ccQItem.email::before,
+.ccQList>LI.ccQItem.calendar::before,
+.ccQList>LI.ccQItem.tasks::before,
+.ccQList>LI.ccQItem.contacts::before,
+.ccQList>LI.ccQItem.files::before,
+.ccQList>LI.ccQItem.webpages::before,
+.ccQList>LI.ccQItem.bookmark::before,
+.ccQList>LI.ccQItem.albums::before,
+.ccQList>LI.ccQItem.blogs::before {
+    position: absolute;
+    margin: 7px 7px;
+    filter: brightness(0) invert(90%);
+}
+
+.ccQList>li.ccQItem.email::before {
+    content: url(/i/32g/email.png);
+}
+.ccQList>LI.ccQItem.calendar::before {
+    content: url(/i/32g/calendar.png);
+}
+.ccQList>LI.ccQItem.tasks::before {
+    content: url(/i/32g/tasks.png);
+}
+.ccQList>LI.ccQItem.contacts::before {
+    content: url(/i/32g/contacts.png);
+}
+.ccQList>LI.ccQItem.files::before {
+    content: url(/i/32g/files.png);
+}
+.ccQList>LI.ccQItem.webpages::before {
+    content: url(/i/32g/webpages.png);
+}
+.ccQList>LI.ccQItem.bookmark::before {
+    content: url(/i/32g/bookmarks.png);
+}
+.ccQList>LI.ccQItem.albums::before {
+    content: url(/i/32g/photoAlbums.png);
+}
+.ccQList>LI.ccQItem.blogs::before {
+    content: url(/i/32g/blog.png);
+}
+
 li[id^="R22\."]::before,
 li[id^="F22\."]::before {
     content: "";
@@ -722,11 +790,34 @@ div.ccSCGroupInd>a[style]::after {
 span.msgAlert::before,
 span.ccArrowDown,
 span.ccArrowUp,
+.ccQList>li.ccQItem .student,
+.annAlert:before,
 img[src^="i/members.png"],
 img[src^="/i/location.png"],
 img[src^="/i/cruiserassist.png"],
 img[src^="/i/edit.png"],
 img[src^="/i/search.png"],
-img[src^="/i/add.png"] {
+img[src^="/i/add.png"],
+img[src^="/i/xpop.png"],
+img[src^="/i/extra.png"],
+img[src^="/i/refresh.png"],
+img[src^="/i/print.png"],
+img[src^="/i/setting.png"],
+img[src^="/i/subscribe.png"],
+img[src^="/i/unsubscribe.png"],
+img[src^="i/subscribe.png"],
+img[src^="i/setting.png"],
+img[src^="/i/mark.png"],
+img[src^="/i/unmark.png"] {
     filter: brightness(0) invert(90%);
+}
+
+/* Writing Dialog */
+
+#detail_tbl {
+    background-color: #4f5359;
+}
+
+#detail_toolbargroup {
+    background-color: #e9e9e9 !important;
 }
