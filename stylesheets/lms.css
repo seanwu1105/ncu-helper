@@ -808,8 +808,13 @@ img[src^="/i/unsubscribe.png"],
 img[src^="i/subscribe.png"],
 img[src^="i/setting.png"],
 img[src^="/i/mark.png"],
-img[src^="/i/unmark.png"] {
+img[src^="/i/unmark.png"],
+img[src^="/i/mail.png"] {
     filter: brightness(0) invert(90%);
+}
+
+img[src^="/img/loading2.gif"] {
+    filter: brightness(0) invert(1);
 }
 
 /* Writing Dialog */

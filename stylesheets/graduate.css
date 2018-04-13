@@ -48,3 +48,7 @@ tr[bgcolor="#b9b9b9"],
 tr[bgcolor="#c9c9c9"] {
     background-color: #2d364b !important;
 }
+
+tr[bgcolor="#FFFF77"] {
+    background-color: #ca4343 !important;
+}
