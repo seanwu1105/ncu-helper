@@ -546,6 +546,13 @@ div[style*="background-color:#EEE"] {
     background-color: #4f5359 !important;
 }
 
+/* Inactive Locker */
+
+.ccModalBg.lock,
+.ccModalBg {
+    background: #4f5359 !important;
+}
+
 
 /* Icons Color Overlay */
 
@@ -788,6 +795,7 @@ div.ccSCGroupInd>a[style]::after {
 #mcTabs #cus:before,
 #mcTabs #actIcon:before,
 span.msgAlert::before,
+span.jnlAlert::before,
 span.ccArrowDown,
 span.ccArrowUp,
 .ccQList>li.ccQItem .student,
@@ -809,12 +817,14 @@ img[src^="i/subscribe.png"],
 img[src^="i/setting.png"],
 img[src^="/i/mark.png"],
 img[src^="/i/unmark.png"],
-img[src^="/i/mail.png"] {
+img[src^="/i/mail.png"],
+img[src^="/i/file/folder.png"],
+img[src^="i/file/folder.png"] {
     filter: brightness(0) invert(90%);
 }
 
 img[src^="/img/loading2.gif"] {
-    filter: brightness(0) invert(1);
+    filter: invert(0.76);
 }
 
 /* Writing Dialog */
