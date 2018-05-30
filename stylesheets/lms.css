@@ -553,6 +553,26 @@ div[style*="background-color:#EEE"] {
     background: #4f5359 !important;
 }
 
+/* Question Sheets */
+
+div#body {
+    background-color: initial !important;
+}
+
+div#header,
+div#footer {
+    background-color: #4f5359 !important;
+}
+
+div.ccQuestion:hover {
+    background-color: #363940 !important;
+}
+
+a.surveyNavBtn {
+    background: initial !important;
+    background-color: #7d848c !important;
+}
+
 
 /* Icons Color Overlay */
 
