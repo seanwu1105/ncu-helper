@@ -295,6 +295,10 @@ table.ccLayout>tbody>tr.ccHover:hover {
     z-index: 100 !important;
 }
 
+#EvaluationsPopupChannel {
+    top: 70px !important;
+}
+
 .ccPadding {
     background-color: initial !important;
 }
