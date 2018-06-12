@@ -5,7 +5,7 @@ Add some features and change the design of NCU webpages in more modern style.
 <img src="https://i.imgur.com/R2joDQJ.png">
 <img src="https://i.imgur.com/hukqQzO.png">
 
-* Version: 0.5 (Alpha Test)
+* Version: 1.20
 * All calculation is running in **local** browser.
 
 ## Features
