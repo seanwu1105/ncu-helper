@@ -1,9 +1,10 @@
 # NCU Helper
+
 Add some features and change the design of NCU webpages in more modern style.
 
-<img src="https://i.imgur.com/OcwXEBk.png">
-<img src="https://i.imgur.com/R2joDQJ.png">
-<img src="https://i.imgur.com/hukqQzO.png">
+![Portal Preview](https://i.imgur.com/OcwXEBk.png)
+![LMS Preview 1](https://i.imgur.com/R2joDQJ.png)
+![LMS Preview 2](https://i.imgur.com/hukqQzO.png)
 
 * Version: 1.20
 * All calculation is running in **local** browser.
@@ -16,6 +17,7 @@ Add some features and change the design of NCU webpages in more modern style.
 4. Beautify NCU CIS Graduation Check List
 
 ### GPA Support
+
 * Overall GPA
 * Major GPA
 * Last 60 Credits GPA
@@ -23,7 +25,7 @@ Add some features and change the design of NCU webpages in more modern style.
 
 ### Calculating Modes
 
-<img src="https://i.imgur.com/QcwunE7.gif">
+![GPA Calculation Preview](https://i.imgur.com/QcwunE7.gif)
 
 #### NCU (4.0)
 
@@ -41,13 +43,15 @@ Add some features and change the design of NCU webpages in more modern style.
 
 ## Installation
 
-Install in Chrome Extension WebStore: https://goo.gl/YM69cw
+Install in Chrome Extension WebStore: <https://goo.gl/YM69cw>
 
 ## Motivation
+
 Some layouts of NCU website are rather ugly and dazzling. Also, calculating GPA
 by hands is slow and dumb.
 
 ## Support
+
 Current only support Google Chrome.
 
 ## TODOs
