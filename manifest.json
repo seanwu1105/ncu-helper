@@ -41,7 +41,7 @@
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
             "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
             "js": [
-                "scripts/jquery-3.3.1.min.js",
+                "lib/jquery-3.3.1.min.js",
                 "scripts/score_inquiries.js"
             ],
             "all_frames": true,

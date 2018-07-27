@@ -1,16 +1,18 @@
-"use strict";
+'use strict';
 
 /* Author: Sean Wu
 ** NCU CSIE, Taiwan
 */
-(function () {
-    let enableList = ["lms.ncu.edu.tw", "portal.ncu.edu.tw"]
+
+(function() {
+    let enableList = ['lms.ncu.edu.tw', 'portal.ncu.edu.tw'];
 
     // Check the webpage
-    chrome.tabs.onUpdated.addListener(function (tagID, changeInfo, tab) {
-        if (enableList.indexOf(new URL(tab.url).hostname) >= 0)
+    chrome.tabs.onUpdated.addListener(function(tagID, changeInfo, tab) {
+        if (enableList.indexOf(new URL(tab.url).hostname) >= 0) {
             chrome.browserAction.enable(tagID);
-        else
+        } else {
             chrome.browserAction.disable(tagID);
+        }
     });
 })();

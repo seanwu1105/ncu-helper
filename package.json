@@ -3,7 +3,8 @@
   "version": "2.0.0",
   "description": "Add some features and change the design of NCU webpages into mroe modern style.",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint --fix scripts/*.js"
   },
   "repository": {
     "type": "git",
@@ -19,5 +20,9 @@
   "bugs": {
     "url": "https://github.com/GLaDOS1105/ncu-helper/issues"
   },
-  "homepage": "https://github.com/GLaDOS1105/ncu-helper#readme"
+  "homepage": "https://github.com/GLaDOS1105/ncu-helper#readme",
+  "devDependencies": {
+    "eslint": "^5.2.0",
+    "eslint-config-google": "^0.9.1"
+  }
 }
