@@ -13,7 +13,7 @@
     let icon = document.createElement('img');
     let title = document.createElement('span');
     logo.id = 'logo';
-    icon.src = chrome.extension.getURL('images/NCULogo.svg');
+    icon.src = chrome.extension.getURL('images/ncu_logo.svg');
     title.innerHTML = '國立中央大學教務系統';
     logo.appendChild(icon);
     logo.appendChild(title)

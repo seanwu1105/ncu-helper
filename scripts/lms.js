@@ -20,7 +20,7 @@
     let title = document.createElement('span');
     homepageLink.href = ('https://lms.ncu.edu.tw/');
     logo.id = 'logo';
-    icon.src = chrome.extension.getURL('images/NCULogo.svg');
+    icon.src = chrome.extension.getURL('images/ncu_logo.svg');
     title.innerHTML = 'LMS';
     logo.appendChild(icon);
     logo.appendChild(title)

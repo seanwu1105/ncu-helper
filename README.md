@@ -56,5 +56,5 @@ Current only support Google Chrome.
 
 ## TODOs
 
-1. Include more webpages for in beautified.
+1. Include more webpages in beautified.
 2. Add switch for each webpage to activate this extension on the `popup.html`.

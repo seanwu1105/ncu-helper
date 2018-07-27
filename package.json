@@ -1,0 +1,23 @@
+{
+  "name": "ncu-helper",
+  "version": "2.0.0",
+  "description": "Add some features and change the design of NCU webpages into mroe modern style.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GLaDOS1105/ncu-helper.git"
+  },
+  "keywords": [
+    "ncu",
+    "beautifier",
+    "gpa"
+  ],
+  "author": "Sean Wu",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/GLaDOS1105/ncu-helper/issues"
+  },
+  "homepage": "https://github.com/GLaDOS1105/ncu-helper#readme"
+}
