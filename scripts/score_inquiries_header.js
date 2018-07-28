@@ -1,8 +1,9 @@
 'use strict';
 
-/* Author: Sean Wu
-** NCU CSIE, Taiwan
-*/
+/**
+ * Author: Sean Wu
+ * NCU CSIE, Taiwan
+ */
 
 (function() {
     // change the height of top bar (header) frame in frameset.

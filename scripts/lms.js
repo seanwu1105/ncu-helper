@@ -1,8 +1,9 @@
 'use strict';
 
-/* Author: Sean Wu
-** NCU CSIE, Taiwan
-*/
+/**
+ * Author: Sean Wu
+ * NCU CSIE, Taiwan
+ */
 
 (function() {
     // block the logout timer from counting down.

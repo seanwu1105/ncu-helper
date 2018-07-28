@@ -1,8 +1,9 @@
 'use strict';
 
-/* Author: Sean Wu
-** NCU CSIE, Taiwan
-*/
+/**
+ * Author: Sean Wu
+ * NCU CSIE, Taiwan
+ */
 
 (function() {
     const enableList = ['lms.ncu.edu.tw', 'portal.ncu.edu.tw'];

@@ -1,9 +1,9 @@
 'use strict';
 
-/* Author: Sean Wu
- ** NCU CSIE, Taiwan
- ** This code is some kind of messy but I don't give a fuck. After all, it
- ** works.
+/**
+ * Author: Sean Wu
+ * NCU CSIE, Taiwan
+ * This code is still messy.
  */
 
 const centerBody = document.getElementsByTagName('center')[0];
@@ -90,10 +90,60 @@ if (centerBody) {
         return 0;
     }
 
-    /* Make the main table (score of credits) selectable.
-    ** Use 'event.currentTarget' instead of 'this' to avoid ESLint error.
-    ** https://github.com/eslint/eslint/issues/632#issuecomment-164742012
-    */
+    /**
+     * Append GPA for each curriculum.
+     * @param {function} modeFunc 'convertScore2NCUGP' or 'convertScore2NTUGP'.
+     */
+    function insertGPATableData(modeFunc) {
+        for (let i = 0; i < scoresList.length; i++) {
+            if (isValidScore(scoresList[i])) {
+                scoresList[i].children[5].innerHTML
+                    = modeFunc(scoresList[i].children[4].innerHTML);
+            }
+        }
+        calculateGPA();
+    }
+
+    /**
+     * Calculate and update the GPA.
+     * This should be recast -> function calculateGPA(list.of.gpa){}
+     * and move to outside module.
+     */
+    function calculateGPA() {
+        let totalGPA = 0;
+        let totalCredits = 0;
+        for (let i = 0; i < scoresList.length; i++) {
+            if (isValidScore(scoresList[i]) &&
+                scoresList[i].classList.contains('selected')) {
+                totalGPA += Number(scoresList[i].children[3].innerHTML)
+                    * Number(scoresList[i].children[5].innerHTML);
+                totalCredits += Number(scoresList[i].children[3].innerHTML);
+            }
+        }
+        if (totalCredits === 0) {
+            GPAPoints.innerHTML = 0;
+        } else {
+            GPAPoints.innerHTML = (totalGPA / totalCredits).toFixed(5);
+        }
+    }
+
+    /**
+     * Deselect all curriculum, and reset the GPA to 0.
+     */
+    function deselectAll() {
+        for (let i = 0; i < scoresList.length; i++) {
+            if (scoresList[i].classList.contains('selected')) {
+                scoresList[i].classList.remove('selected');
+            }
+        }
+        calculateGPA();
+    }
+
+    /**
+     * Make the main table (score of credits) selectable.
+     * Use 'event.currentTarget' instead of 'this' to avoid ESLint error.
+     * https://github.com/eslint/eslint/issues/632#issuecomment-164742012
+     */
     $('#main-table tr.list1 td').on('click', function() {
         const tr = $(event.currentTarget).parent();
         if (tr.hasClass('selected')) {
@@ -166,18 +216,6 @@ if (centerBody) {
 
     document.getElementById('ModeNCU(4.0)').checked = true;
 
-    /**
-     * Deselect all curriculum, and reset the GPA to 0.
-     */
-    function deselectAll() {
-        for (let i = 0; i < scoresList.length; i++) {
-            if (scoresList[i].classList.contains('selected')) {
-                scoresList[i].classList.remove('selected');
-            }
-        }
-        calculateGPA();
-    }
-
     deselectAllBtn.onclick = deselectAll;
 
     selectAllBtn.onclick = function() {
@@ -237,41 +275,6 @@ if (centerBody) {
     $('label[for="ModeNTU(4.3)"').on('click', function() {
         insertGPATableData(convertScore2NTUGP);
     });
-
-    /**
-     * Append GPA for each curriculum.
-     * @param {function} modeFunc 'convertScore2NCUGP' or 'convertScore2NTUGP'.
-     */
-    function insertGPATableData(modeFunc) {
-        for (let i = 0; i < scoresList.length; i++) {
-            if (isValidScore(scoresList[i])) {
-                scoresList[i].children[5].innerHTML
-                    = modeFunc(scoresList[i].children[4].innerHTML);
-            }
-        }
-        calculateGPA();
-    }
-
-    /**
-     * Calculate and update the GPA.
-     */
-    function calculateGPA() {
-        let totalGPA = 0;
-        let totalCredits = 0;
-        for (let i = 0; i < scoresList.length; i++) {
-            if (isValidScore(scoresList[i]) &&
-                scoresList[i].classList.contains('selected')) {
-                totalGPA += Number(scoresList[i].children[3].innerHTML)
-                    * Number(scoresList[i].children[5].innerHTML);
-                totalCredits += Number(scoresList[i].children[3].innerHTML);
-            }
-        }
-        if (totalCredits === 0) {
-            GPAPoints.innerHTML = 0;
-        } else {
-            GPAPoints.innerHTML = (totalGPA / totalCredits).toFixed(5);
-        }
-    }
 
     insertGPATableData(convertScore2NCUGP);
 }
