@@ -6,14 +6,14 @@ Add some features and change the design of NCU webpages in more modern style.
 ![LMS Preview 1](https://i.imgur.com/R2joDQJ.png)
 ![LMS Preview 2](https://i.imgur.com/hukqQzO.png)
 
-* Version: 1.20
+* Version: 2.0.0
 * All calculation is running in **local** browser.
 
 ## Features
 
 1. Beautify LMS (Learning Management System)
 2. Beautify NCU Portal Login Page
-3. Beautify NCU CIS Score Inquiries Webpages and Automatically Calculate GPA
+3. Beautify NCU CIS Score Inquiries Webpages and Automatically Calculate GPA (zhTW only)
 4. Beautify NCU CIS Graduation Check List
 
 ### GPA Support

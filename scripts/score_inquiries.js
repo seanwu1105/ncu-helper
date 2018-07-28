@@ -6,14 +6,14 @@
  ** works.
  */
 
-let centerBody = document.getElementsByTagName('center')[0];
+const centerBody = document.getElementsByTagName('center')[0];
 if (centerBody) {
-    let mainTable = document.getElementsByTagName('table')[0];
+    const mainTable = document.getElementsByTagName('table')[0];
     mainTable.setAttribute('id', 'main-table');
-    let GPAHeader = document.createElement('td');
+    const GPAHeader = document.createElement('td');
     GPAHeader.innerHTML = 'GPA Score';
     mainTable.children[0].firstChild.appendChild(GPAHeader);
-    let scoresList = mainTable.children[0].querySelectorAll('tr.list1');
+    const scoresList = mainTable.children[0].querySelectorAll('tr.list1');
     for (let i = 0; i < scoresList.length; i++) {
         scoresList[i].appendChild(document.createElement('td'));
     }
@@ -24,7 +24,7 @@ if (centerBody) {
      * @return {bool} The sum of the two numbers.
      */
     function isValidScore(tr) {
-        let score = parseInt(tr.children[4].innerHTML);
+        const score = parseInt(tr.children[4].innerHTML);
         if (Number.isInteger(score)) {
             return true;
         }
@@ -36,7 +36,7 @@ if (centerBody) {
      * @param {num} score The first number.
      * @return {num} The sum of the two numbers.
      */
-    function convertScoreToNCUGP(score) {
+    function convertScore2NCUGP(score) {
         score = Number(score);
         if (score >= 80) {
             return 4;
@@ -58,7 +58,7 @@ if (centerBody) {
      * @param {num} score The first number.
      * @return {num} The sum of the two numbers.
      */
-    function scoreToNTUGP(score) {
+    function convertScore2NTUGP(score) {
         score = Number(score);
         if (score >= 90) {
             return 4.3;
@@ -90,9 +90,12 @@ if (centerBody) {
         return 0;
     }
 
-    /* Make the main table (score of credits) selectable. */
+    /* Make the main table (score of credits) selectable.
+    ** Use 'event.currentTarget' instead of 'this' to avoid ESLint error.
+    ** https://github.com/eslint/eslint/issues/632#issuecomment-164742012
+    */
     $('#main-table tr.list1 td').on('click', function() {
-        let tr = $(this).parent();
+        const tr = $(event.currentTarget).parent();
         if (tr.hasClass('selected')) {
             tr.removeClass('selected');
         } else {
@@ -105,18 +108,18 @@ if (centerBody) {
     $('tr.list3 td[colspan]').attr('colspan', '6');
 
     /* Create GPA table. */
-    let GPA = document.createElement('div');
-    let GPATitle = document.createElement('span');
-    let GPAPoints = document.createElement('span');
-    let GPAModes = document.createElement('div');
+    const GPA = document.createElement('div');
+    const GPATitle = document.createElement('span');
+    const GPAPoints = document.createElement('span');
+    const GPAModes = document.createElement('div');
 
     /* Modes */
-    let modesOptions = ['NCU(4.0)', 'NTU(4.3)'];
+    const modesOptions = ['NCU(4.0)', 'NTU(4.3)'];
     modesOptions.forEach((element) => {
-        let input = document.createElement('input');
-        let label = document.createElement('label');
-        let bigSpan = document.createElement('span');
-        let smallSpan = document.createElement('span');
+        const input = document.createElement('input');
+        const label = document.createElement('label');
+        const bigSpan = document.createElement('span');
+        const smallSpan = document.createElement('span');
         input.type = 'radio';
         input.value = element;
         input.id = 'Mode' + element;
@@ -133,11 +136,11 @@ if (centerBody) {
     });
 
     /* Select Actions */
-    let selectAllBtn = document.createElement('button');
-    let selectMajorBtn = document.createElement('button');
-    let selectLast60Btn = document.createElement('button');
-    let selectSJBtn = document.createElement('button');
-    let deselectAllBtn = document.createElement('button');
+    const selectAllBtn = document.createElement('button');
+    const selectMajorBtn = document.createElement('button');
+    const selectLast60Btn = document.createElement('button');
+    const selectSJBtn = document.createElement('button');
+    const deselectAllBtn = document.createElement('button');
     selectAllBtn.innerHTML = 'Select All';
     selectMajorBtn.innerHTML = 'Select All Major';
     selectLast60Btn.innerHTML = 'Select Last 60 Credits';
@@ -163,6 +166,9 @@ if (centerBody) {
 
     document.getElementById('ModeNCU(4.0)').checked = true;
 
+    /**
+     * Deselect all curriculum, and reset the GPA to 0.
+     */
     function deselectAll() {
         for (let i = 0; i < scoresList.length; i++) {
             if (scoresList[i].classList.contains('selected')) {
@@ -212,11 +218,13 @@ if (centerBody) {
 
     selectSJBtn.onclick = function() {
         deselectAll();
-        let firstYear = Number(scoresList[0].firstChild.innerHTML.slice(0, -1));
+        const firstYear = Number(
+            scoresList[0].firstChild.innerHTML.slice(0, -1));
         for (let i = 0; i < scoresList.length; i++) {
             if (isValidScore(scoresList[i]) &&
                 !scoresList[i].classList.contains('selected') &&
-                Number(scoresList[i].firstChild.innerHTML.slice(0, -1)) - firstYear >= 2) {
+                Number(scoresList[i].firstChild.innerHTML.slice(0, -1))
+                - firstYear >= 2) {
                 scoresList[i].classList.add('selected');
             }
         }
@@ -224,28 +232,37 @@ if (centerBody) {
     };
 
     $('label[for="ModeNCU(4.0)"').on('click', function() {
-        insertGPATableData(convertScoreToNCUGP);
+        insertGPATableData(convertScore2NCUGP);
     });
     $('label[for="ModeNTU(4.3)"').on('click', function() {
-        insertGPATableData(scoreToNTUGP);
+        insertGPATableData(convertScore2NTUGP);
     });
 
+    /**
+     * Append GPA for each curriculum.
+     * @param {function} modeFunc 'convertScore2NCUGP' or 'convertScore2NTUGP'.
+     */
     function insertGPATableData(modeFunc) {
         for (let i = 0; i < scoresList.length; i++) {
             if (isValidScore(scoresList[i])) {
-                scoresList[i].children[5].innerHTML = modeFunc(scoresList[i].children[4].innerHTML);
+                scoresList[i].children[5].innerHTML
+                    = modeFunc(scoresList[i].children[4].innerHTML);
             }
         }
         calculateGPA();
     }
 
+    /**
+     * Calculate and update the GPA.
+     */
     function calculateGPA() {
         let totalGPA = 0;
         let totalCredits = 0;
         for (let i = 0; i < scoresList.length; i++) {
             if (isValidScore(scoresList[i]) &&
                 scoresList[i].classList.contains('selected')) {
-                totalGPA += Number(scoresList[i].children[3].innerHTML) * Number(scoresList[i].children[5].innerHTML);
+                totalGPA += Number(scoresList[i].children[3].innerHTML)
+                    * Number(scoresList[i].children[5].innerHTML);
                 totalCredits += Number(scoresList[i].children[3].innerHTML);
             }
         }
@@ -256,5 +273,5 @@ if (centerBody) {
         }
     }
 
-    insertGPATableData(convertScoreToNCUGP);
+    insertGPATableData(convertScore2NCUGP);
 }

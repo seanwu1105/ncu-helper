@@ -6,7 +6,7 @@
 
 (function() {
     // block the logout timer from counting down.
-    let script = document.createElement('script');
+    const script = document.createElement('script');
     script.appendChild(document.createTextNode(
         'if(typeof CC.timer != "undefined")'
         + '{CC.timer.clear();console.log("Logout timer has stopped")}'));
@@ -14,14 +14,11 @@
         || document.documentElement).appendChild(script);
 
     // add LMS logo.
-    let ccTabsL = document.getElementById('ccTabsL');
-    if (ccTabsL) {
-        console.log('GOTIT!');
-    }
-    let homepageLink = document.createElement('a');
-    let logo = document.createElement('div');
-    let icon = document.createElement('img');
-    let title = document.createElement('span');
+    const ccTabsL = document.getElementById('ccTabsL');
+    const homepageLink = document.createElement('a');
+    const logo = document.createElement('div');
+    const icon = document.createElement('img');
+    const title = document.createElement('span');
     homepageLink.href = ('https://lms.ncu.edu.tw/');
     logo.id = 'logo';
     icon.src = chrome.extension.getURL('images/ncu_logo.svg');
@@ -29,15 +26,18 @@
     logo.appendChild(icon);
     logo.appendChild(title);
     homepageLink.appendChild(logo);
+    if (ccTabsL) {
+        console.log('Override the logo.');
+    }
     ccTabsL.appendChild(homepageLink);
 
     // change the #ccQTool DOM node.
-    let ccTabsR = document.getElementById('ccTabsR');
+    const ccTabsR = document.getElementById('ccTabsR');
     ccTabsR.removeAttribute('nowrap');
     ccTabsR.appendChild(document.getElementById('ccQTool'));
 
     // change the .add DOM node.
-    let classAdd = document.getElementsByClassName('add');
+    const classAdd = document.getElementsByClassName('add');
     for (let i = 0; i < classAdd.length; i++) {
         classAdd.item(i).appendChild(document.createTextNode('+'));
     }
