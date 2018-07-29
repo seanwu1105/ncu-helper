@@ -14,12 +14,13 @@
         "default_icon": {
             "128": "images/icon_128.png"
         },
-        "default_title": "NCU Helper"
+        "default_title": "NCU Helper",
+        "default_popup": "popup.html"
     },
     "content_scripts": [{
             "matches": ["https://lms.ncu.edu.tw/*"],
             "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
-            "css": ["stylesheets/lms.css"],
+            "js": ["scripts/lms.switch.js"],
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -33,7 +34,7 @@
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
             "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "css": ["stylesheets/score_inquiries.css"],
+            "css": ["stylesheets/score-inquiries.css"],
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -42,20 +43,20 @@
             "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
             "js": [
                 "lib/jquery-3.3.1.min.js",
-                "scripts/score_inquiries.js"
+                "scripts/score-inquiries.js"
             ],
             "all_frames": true,
             "run_at": "document_end"
         },
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "css": ["stylesheets/score_inquiries_header.css"],
+            "css": ["stylesheets/score-inquiries-header.css"],
             "all_frames": true,
             "run_at": "document_start"
         },
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "js": ["scripts/score_inquiries_header.js"],
+            "js": ["scripts/score-inquiries-header.js"],
             "all_frames": true,
             "run_at": "document_end"
         },
@@ -79,7 +80,8 @@
     "permissions": [
         "tabs",
         "webRequest",
-        "webRequestBlocking"
+        "webRequestBlocking",
+        "storage"
     ],
-    "web_accessible_resources": ["images/*"]
+    "web_accessible_resources": ["images/*", "stylesheets/*.css"]
 }
