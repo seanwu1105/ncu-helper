@@ -23,6 +23,7 @@
   "homepage": "https://github.com/GLaDOS1105/ncu-helper#readme",
   "devDependencies": {
     "eslint": "^5.2.0",
-    "eslint-config-google": "^0.9.1"
+    "eslint-config-google": "^0.9.1",
+    "mocha": "^5.2.0"
   }
 }

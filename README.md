@@ -56,5 +56,7 @@ Current only support Google Chrome.
 
 ## TODOs
 
-1. Include more webpages in beautified.
-2. Add switch for each webpage to activate this extension on the `popup.html`.
+* [ ] Include more webpages in beautified.
+* [ ] Add switch for each webpage to activate this extension on the `popup.html`.
+* [ ] Dynamically display dorm IP upload/download stream usage.
+* [ ] Unit test (but for Chrome Extension, unit test is rather cumbersome...)
