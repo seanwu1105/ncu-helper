@@ -1,0 +1,49 @@
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 9;
+}
+
+pre {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #F1F3F5;
+    font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+}
+
+code {
+    border-radius: 5px;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    background: #F1F3F5;
+    padding: 2px;
+    font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+}
+
+pre code {
+    border-radius: 0px;
+    -moz-border-radius: 0px;
+    -webkit-border-radius: 0px;
+    padding: 2px;
+    background: initial;
+    font:12px Monaco,Consolas,"Andale  Mono","DejaVu Sans Mono",monospace;
+}
+
+.settings-content {
+    padding: 40px 28px;
+}
+
+.mdl-grid.center-items {
+    justify-content: center;
+}
+
+.mdl-cell.center-items {
+    display: flex;
+    align-items: center;
+}
+
+div.icon:focus {
+    outline: none;
+}

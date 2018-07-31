@@ -2,22 +2,62 @@
 <html>
 
 <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="images/icon_128.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.amber-orange.min.css" />
     <script src="lib/material.min.js"></script>
-    <style>
-        html, body {
-            width: 200px;
-        }
-    </style>
+    <link rel="stylesheet" href="stylesheets/popup.css">
 </head>
 
 <body>
-    <label id="lms" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="lms-checkbox">
-        <input type="checkbox" id="lms-checkbox" class="mdl-switch__input" checked>
-        <span class="mdl-switch__label">LMS Beautifier</span>
-    </label>
-    <script src="popup.js"></script>
+    <div class="mdl-grid">
+        <h4 id="title" class="mdl-cell mdl-cell--12-col">NCU Helper</h4>
+        <div class="demo-list-action mdl-list mdl-cell mdl-cell--12-col">
+            <div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">settings</i>
+                    <span>設定</span>
+                </span>
+                <a id="settings-link" class="mdl-list__item-secondary-action" href target="_blank">
+                    <i class="material-icons">arrow_forward</i>
+                </a>
+            </div>
+            <div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">extension</i>
+                    <span>評分應用程式</span>
+                </span>
+                <a class="mdl-list__item-secondary-action" href="https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb"
+                    target="_blank">
+                    <i class="material-icons">link</i>
+                </a>
+            </div>
+            <div class="mdl-list__item">
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">bug_report</i>
+                    <span>回報錯誤</span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="https://github.com/GLaDOS1105/ncu-helper/issues">
+                        <i class="material-icons">link</i>
+                    </a>
+                </span>
+            </div>
+            <div class="mdl-list__item">
+                    <span class="mdl-list__item-primary-content">
+                        <i class="material-icons mdl-list__item-icon">branding_watermark</i>
+                        <span>License</span>
+                    </span>
+                    <span class="mdl-list__item-secondary-content">
+                        <a class="mdl-list__item-secondary-action" href="#">
+                            <i class="material-icons">link</i>
+                        </a>
+                    </span>
+                </div>
+        </div>
+    </div>
+    <script src="scripts/popup.js"></script>
 </body>
 
 </html>

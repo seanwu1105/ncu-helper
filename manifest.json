@@ -34,7 +34,7 @@
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
             "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "css": ["stylesheets/score-inquiries.css"],
+            "js": ["scripts/score-inquiries.switch.js"],
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -50,7 +50,7 @@
         },
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "css": ["stylesheets/score-inquiries-header.css"],
+            "js": ["scripts/score-inquiries-header.switch.js"],
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -62,7 +62,7 @@
         },
         {
             "matches": ["https://cis.ncu.edu.tw/grad/index.php*"],
-            "css": ["stylesheets/graduate.css"],
+            "js": ["scripts/graduate.switch.js"],
             "run_at": "document_start"
         },
         {
@@ -73,7 +73,7 @@
                 "https://portal.ncu.edu.tw/system/147*",
                 "https://portal.ncu.edu.tw/system/162*"
             ],
-            "css": ["stylesheets/portal.css"],
+            "js": ["scripts/portal.switch.js"],
             "run_at": "document_start"
         }
     ],
