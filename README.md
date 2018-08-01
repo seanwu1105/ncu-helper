@@ -6,7 +6,7 @@ Add some features and change the design of NCU webpages in more modern style.
 ![LMS Preview 1](https://i.imgur.com/R2joDQJ.png)
 ![LMS Preview 2](https://i.imgur.com/hukqQzO.png)
 
-* Version: 2.0.0
+* Version: `2.0.1`
 * All calculation is running in **local** browser.
 
 ## Features
