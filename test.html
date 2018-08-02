@@ -22,7 +22,7 @@
             },
             function(data, status) {
                 $('div#status').text('Status: ' + status);
-                table = $(data).find('table[border="1"][cellspacing="0"][cellpadding="5"]');
+                let table = $(data).find('table[border="1"][cellspacing="0"][cellpadding="5"]');
                 // $('div#result').html(table);
                 $.each($(table).find('tr[bgcolor="#ffffee"], tr[bgcolor="#eeeeee"]'), function(index, tr) {
                     $.each($(tr).find('td'), function(index, td) {
