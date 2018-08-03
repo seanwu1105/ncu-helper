@@ -6,7 +6,7 @@
  * NCU CSIE, Taiwan
  */
 
-chrome.storage.sync.get('portal', function(result) {
+chrome.storage.sync.get('portal', (result) => {
     let switcher = result['portal'];
     if (switcher) {
         // load css.

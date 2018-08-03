@@ -6,7 +6,7 @@
  * NCU CSIE, Taiwan
  */
 
-chrome.storage.sync.get('graduate', function(result) {
+chrome.storage.sync.get('graduate', (result) => {
     let switcher = result['graduate'];
     if (switcher) {
         // load css.

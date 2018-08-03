@@ -6,7 +6,7 @@
  * NCU CSIE, Taiwan
  */
 
-chrome.storage.sync.get('lms', function(result) {
+chrome.storage.sync.get('lms', (result) => {
     let switcher = result.lms;
     if (switcher) {
         // load css.

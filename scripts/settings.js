@@ -9,7 +9,7 @@ function updateSettings() {
     }
 }
 
-chrome.storage.sync.get(null, function(result) {
+chrome.storage.sync.get(null, (result) => {
     for (switchName of SWITCH_NAMES) {
         // Load settings.
         let toggle = document.getElementById(switchName);

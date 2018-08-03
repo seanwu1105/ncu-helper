@@ -17,9 +17,7 @@ chrome.storage.sync.set({
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
 chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 1});
-chrome.alarms.onAlarm.addListener(function(_alarm) {
-    updateDormNetflowUsage(TEST_IP);
-});
+chrome.alarms.onAlarm.addListener((_alarm) => updateDormNetflowUsage(TEST_IP));
 
 updateDormNetflowUsage(TEST_IP);
 
@@ -41,13 +39,13 @@ function updateDormNetflowUsage(ipAddress) {
             section: 'netflow',
             ip: ipAddress,
         },
-        function(html, status) {
+        (html, status) => {
             console.log('updateDormNetflow status: ' + status);
             let table = $(html, ownerDocument).find(
                 'table[border="1"][cellspacing="0"][cellpadding="5"]');
             $.each(
                 $(table).find('tr[bgcolor="#ffffee"], tr[bgcolor="#eeeeee"]'),
-                function(_idx, tr) {
+                (_idx, tr) => {
                     let data = {
                         time: undefined,
                         externalUl: undefined,
@@ -55,7 +53,7 @@ function updateDormNetflowUsage(ipAddress) {
                         totalUl: undefined,
                         totalDl: undefined,
                     };
-                    $.each($(tr).find('td'), function(idx, td) {
+                    $.each($(tr).find('td'), (idx, td) => {
                         let content = $(td).text();
                         if (idx === 0) data.time = moment(content);
                         else if (idx === 1) data.externalUl = Number(content);
