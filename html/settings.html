@@ -38,58 +38,86 @@
                     <h3>設定</h3>
                     <p>變更設定後，需重新整理頁面以套用變更。設定會同步於您 Google Chrome 瀏覽器登入之帳號。</p>
                     <div class="mdl-grid mdl-grid--no-spacing">
-                        <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>Portal Beautifier</h5>
+                        <div class="mdl-cell mdl-cell--10-col">
+                            <h5>Portal 深色外觀</h5>
                             對 NCU Portal 「部份」網頁套用深色外觀。此效果會套用至
-                            <code>https://portal.ncu.edu.tw/</code>, <code>https://portal.ncu.edu.tw/chgpasswd*</code>, <code>https://portal.ncu.edu.tw/login*</code>, <code>https://portal.ncu.edu.tw/system/147*</code>, <code>https://portal.ncu.edu.tw/system/162*</code>。
+                            <code>https://portal.ncu.edu.tw/</code>,
+                            <code>https://portal.ncu.edu.tw/chgpasswd*</code>,
+                            <code>https://portal.ncu.edu.tw/login*</code>,
+                            <code>https://portal.ncu.edu.tw/system/147*</code>,
+                            <code>https://portal.ncu.edu.tw/system/162*</code>。
                         </div>
-                        <div class="mdl-cell mdl-cell--middle mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="portal" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="portal-checkbox">
                                 <input type="checkbox" id="portal-checkbox" class="mdl-switch__input" checked>
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>
-                        <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>LMS Beautifier</h5>
+                        <div class="mdl-cell mdl-cell--10-col">
+                            <h5>LMS 深色外觀</h5>
                             對 LMS 網頁套用深色外觀。此效果會套用至
                             <code>https://lms.ncu.edu.tw/*</code> 等網頁。
                         </div>
-                        <div class="mdl-cell mdl-cell--middle mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="lms" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="lms-checkbox">
                                 <input type="checkbox" id="lms-checkbox" class="mdl-switch__input" checked>
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>
-                        <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>Score Inquiries Beautifier</h5>
+                        <div class="mdl-cell mdl-cell--10-col">
+                            <h5>成績查詢系統深色外觀</h5>
                             對成績查詢網頁套用深色外觀。此效果會套用至
                             <code>https://cis.ncu.edu.tw/ScoreInquiries/*</code> 等網頁。
                         </div>
-                        <div class="mdl-cell mdl-cell--middle mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="score-inquiries" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="score-inquiries-checkbox">
                                 <input type="checkbox" id="score-inquiries-checkbox" class="mdl-switch__input" checked>
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>
-                        <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>Graduation Evaluating System Beautifier</h5>
+                        <div class="mdl-cell mdl-cell--10-col">
+                            <h5>畢審系統深色外觀</h5>
                             對畢審系統查詢網頁套用深色外觀。此效果會套用至
                             <code>https://cis.ncu.edu.tw/grad/index.php*</code> 等網頁。
                         </div>
-                        <div class="mdl-cell mdl-cell--middle mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="graduate" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="graduate-checkbox">
                                 <input type="checkbox" id="graduate-checkbox" class="mdl-switch__input" checked>
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>
-                        <div class="mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-                            <h5>GPA Calculator</h5>
-                            啟用 GPA 計算工具。此效果會套用至
+                        <div class="mdl-cell mdl-cell--10-col">
+                            <h5>GPA 計算工具</h5>
+                            啟用 GPA 計算工具，所有計算皆在本地端運行，不會上傳任何個人資料，如有疑慮請聯絡開發者或自行參考原始碼。此效果會套用至
                             <code>https://cis.ncu.edu.tw/ScoreInquiries/*</code> 等網頁。
                         </div>
-                        <div class="mdl-cell mdl-cell--middle mdl-cell--2-col mdl-cell--1-col-phone">
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="gpa" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="gpa-checkbox">
                                 <input type="checkbox" id="gpa-checkbox" class="mdl-switch__input" checked>
+                                <span class="mdl-switch__label"></span>
+                            </label>
+                        </div>
+                        <div class="mdl-cell mdl-cell--8-col">
+                            <h5>宿網流量監控</h5>
+                            啟用宿網流量監控工具。監控宿網流量並顯示剩餘上傳流量在彈跳視窗（popup），以方便確保使用者不會超量使用（24 小時內上傳流量超過 3GB）導致計算機中心鎖卡。格式必須為中央大學 IP 位址（
+                            <code>140.115.xxx.xxx</code>）。
+                        </div>
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--middle mdl-cell--2-col">
+                            <input class="mdl-textfield__input" type="text" pattern="^140\.115\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)$"
+                                id="dorm-netflow-ipaddress">
+                            <label class="mdl-textfield__label" for="dorm-netflow-ipaddress">IP Address</label>
+                            <span class="mdl-textfield__error">輸入務必為中央大學 IP 位址格式！</span>
+                        </div>
+                        <div class="mdl-layout-spacer"></div>
+                        <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
+                            <label id="dorm-netflow" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="dorm-netflow-checkbox">
+                                <input type="checkbox" id="dorm-netflow-checkbox" class="mdl-switch__input">
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>

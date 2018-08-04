@@ -5,7 +5,7 @@
  * NCU CSIE, Taiwan
  */
 
-const TEST_IP = '140.115.221.88';
+const TEST_IP = '140.115.212.6';
 
 // Set default settings.
 chrome.storage.sync.set({
@@ -14,6 +14,7 @@ chrome.storage.sync.set({
     'score-inquiries': true,
     'gpa': true,
     'graduate': true,
+    'dorm-netflow': false,
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
@@ -104,5 +105,6 @@ function updateDormNetflowUsage(ipAddress, usageDataSet) {
                         Number(data[3]), Number(data[4])
                     ));
                 });
+            usageDataSet.reverse();
         });
 };
