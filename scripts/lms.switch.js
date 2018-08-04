@@ -11,8 +11,8 @@ chrome.storage.sync.get('lms', (result) => {
     if (switcher) {
         // load css.
         const link = document.createElement('link');
-        link.setAttribute('href', chrome.extension.getURL(
-            'stylesheets/lms.css'));
+        link.setAttribute(
+            'href', chrome.extension.getURL('stylesheets/lms.css'));
         link.setAttribute('rel', 'stylesheet');
         const head = document.head || document.getElementsByTagName('head')[0]
             || document.documentElement;

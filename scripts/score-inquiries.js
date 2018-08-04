@@ -4,7 +4,23 @@
  * This code is still messy.
  */
 
-if (switcher) {
+chrome.storage.sync.get('gpa', (result) => {
+    if (result.gpa) {
+        const link = document.createElement('link');
+        link.setAttribute(
+            'href', chrome.extension.getURL('stylesheets/gpa.css'));
+        link.setAttribute('rel', 'stylesheet');
+        const head = document.head || document.getElementsByTagName('head')[0]
+            || document.documentElement;
+        head.insertBefore(link, head.lastChild);
+        buildGpaCalculator();
+    }
+});
+
+/**
+ * Build the GPA calculator and append it in the bottom of the page.
+ */
+function buildGpaCalculator() {
     const centerBody = document.getElementsByTagName('center')[0];
     if (centerBody) {
         /**

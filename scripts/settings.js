@@ -1,4 +1,4 @@
-const SWITCH_NAMES = ['portal', 'lms', 'score-inquiries', 'graduate'];
+const SWITCH_NAMES = ['portal', 'lms', 'score-inquiries', 'gpa', 'graduate'];
 /**
  * Update the settings.
  */

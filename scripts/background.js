@@ -12,6 +12,7 @@ chrome.storage.sync.set({
     'portal': true,
     'lms': true,
     'score-inquiries': true,
+    'gpa': true,
     'graduate': true,
 });
 

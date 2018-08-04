@@ -7,8 +7,7 @@
  */
 
 chrome.storage.sync.get('score-inquiries', (result) => {
-    let switcher = result['score-inquiries'];
-    if (switcher) {
+    if (result['score-inquiries']) {
         // load css.
         const link = document.createElement('link');
         link.setAttribute('href', chrome.extension.getURL(
