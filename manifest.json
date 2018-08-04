@@ -20,7 +20,7 @@
             "128": "images/icon_128.png"
         },
         "default_title": "NCU Helper",
-        "default_popup": "popup.html"
+        "default_popup": "html/popup.html"
     },
     "content_scripts": [{
             "matches": ["https://lms.ncu.edu.tw/*"],
@@ -89,5 +89,9 @@
         "storage",
         "alarms"
     ],
-    "web_accessible_resources": ["images/*", "stylesheets/*.css"]
+    "web_accessible_resources": ["images/*", "stylesheets/*.css"],
+    "sandbox": {
+        "pages": ["html/netflow.html"]
+    }
+    // "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
 }

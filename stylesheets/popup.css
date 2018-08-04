@@ -5,3 +5,7 @@ body {
 h4#title {
     text-align: center;
 }
+
+iframe.netflow {
+    height: 50px;
+}

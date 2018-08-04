@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Dorm Netflow Plot Sandbox</title>
+    <script src='../lib/plotly-latest.min.js'></script>
+    <style>
+        body {
+            margin: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='plot'></div>
+
+    <script>
+        /**
+        * Plot the histgram on div#netflow-plot.
+        * @param {NetflowUsage[]} dormNetflowUsageSet A list contains all dorm netflow
+        *                                             usage.
+        */
+        function plotHistgram(dormNetflowUsageSet) {
+            let external = [];
+            let internal = [];
+            for (dormNetflowUsage of dormNetflowUsageSet) {
+                external.push(dormNetflowUsage.externalUpload);
+                internal.push(
+                    dormNetflowUsage.totalUpload - dormNetflowUsage.externalUpload);
+            }
+            Plotly.newPlot(
+                'plot',
+                [
+                    {
+                        y: external,
+                        type: 'bar',
+                        name: '校外上傳',
+                        marker: {color: '#FFAB00'},
+                    },
+                    {
+                        y: internal,
+                        type: 'bar',
+                        name: '校內上傳',
+                        marker: {color: '#FF6D00'},
+                    },
+                ],
+                {
+                    height: 50,
+                    margin: {l: 0, r: 0, t: 0, b: 0},
+                    showlegend: false,
+                    barmode: 'overlay',
+                },
+                {displayModeBar: false}
+            );
+        }
+
+        window.addEventListener('message', function(event) {
+            console.log(event);
+            switch (event.data.command) {
+                case 'render':
+                    plotHistgram(event.data.context);
+                    break;
+            }
+        });
+    </script>
+</body>
+
+</html>

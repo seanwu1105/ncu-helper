@@ -5,7 +5,7 @@
  * NCU CSIE, Taiwan
  */
 
-const TEST_IP = '140.115.201.18';
+const TEST_IP = '140.115.221.88';
 
 // Set default settings.
 chrome.storage.sync.set({
@@ -16,18 +16,21 @@ chrome.storage.sync.set({
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
-let dormNetflowUsage = [];
-chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 1});
-chrome.alarms.onAlarm.addListener((_alarm) => updateDormNetflowUsage(
-    TEST_IP, dormNetflowUsage));
+let dormNetflowUsageSet = [];
 
-updateDormNetflowUsage(TEST_IP, dormNetflowUsage);
+updateDormNetflowUsage(TEST_IP, dormNetflowUsageSet);
+
+chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 1});
+chrome.alarms.onAlarm.addListener((_alarm) => {
+    dormNetflowUsageSet = [];
+    updateDormNetflowUsage(TEST_IP, dormNetflowUsageSet);
+});
 
 // Deal with the request from popup.js
 chrome.runtime.onMessage.addListener(
     (request, _sender, sendResponse) => {
         if (request.name === 'dormNetflowUsage') {
-            sendResponse(dormNetflowUsage);
+            sendResponse(dormNetflowUsageSet);
         }
     }
 );
