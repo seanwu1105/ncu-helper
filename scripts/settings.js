@@ -11,7 +11,8 @@ const SWITCH_NAMES = [
  * @param {str} switchName The name of the material switch.
  */
 function updateSettings(switchName) {
-    let checkbox = document.getElementById(switchName).firstElementChild;
+    let checkbox = document.getElementById(
+        switchName).querySelector('input[type="checkbox"]');
     chrome.storage.sync.set({[switchName]: checkbox.checked});
 }
 
@@ -19,7 +20,7 @@ chrome.storage.sync.get(null, (result) => {
     for (let switchName of SWITCH_NAMES) {
         // Load settings.
         let toggle = document.getElementById(switchName);
-        let checkbox = toggle.firstElementChild;
+        let checkbox = toggle.querySelector('input[type="checkbox"]');
         checkbox.checked = result[switchName];
         toggle.MaterialSwitch.checkToggleState();
 
@@ -30,17 +31,24 @@ chrome.storage.sync.get(null, (result) => {
     syncDormNetflowTextFieldStatus();
 });
 
-/* bind the switch of netflow detection to the text field input. */
+/* bind the switch of netflow detection to the set-ip-address button. */
 let dormNetflowToggle = document.getElementById('dorm-netflow');
-let dormNetflowTextField = document.getElementById('dorm-netflow-ipaddress');
+let dormNetflowSetBtn = document.getElementById('dorm-netflow-btn');
+let dormNetflowDialog = document.getElementById('dorm-netflow-dialog');
 
 /**
- * Sync dorm netflow text field status with its toggle.
+ * Sync dorm netflow set-ip-address button status with its toggle.
  */
 function syncDormNetflowTextFieldStatus() {
-    let dormNetflowCheckbox = dormNetflowToggle.firstElementChild;
-    dormNetflowTextField.disabled = !dormNetflowCheckbox.checked;
-    console.log(dormNetflowCheckbox.checked);
+    let dormNetflowCheckbox = dormNetflowToggle.querySelector(
+        '#dorm-netflow-checkbox');
+    dormNetflowSetBtn.disabled = !dormNetflowCheckbox.checked;
 }
 
 dormNetflowToggle.addEventListener('click', syncDormNetflowTextFieldStatus);
+dormNetflowSetBtn.addEventListener(
+    'click', () => dormNetflowDialog.showModal());
+let allDialogBtns = dormNetflowDialog.querySelectorAll('button');
+Array.from(allDialogBtns).forEach((btn) => {
+    btn.addEventListener('click', () => dormNetflowDialog.close());
+});

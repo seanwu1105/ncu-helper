@@ -19,6 +19,7 @@
     <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
         <header class="mdl-layout__header">
             <div class="mdl-layout__header-row">
+                <img id="logo" src="../images/icon_128.png">
                 <!-- Title -->
                 <span class="mdl-layout-title">NCU Helper</span>
                 <!-- Add spacer, to align navigation to the right -->
@@ -108,12 +109,9 @@
                             <code>140.115.xxx.xxx</code>）。
                         </div>
                         <div class="mdl-layout-spacer"></div>
-                        <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell mdl-cell--middle mdl-cell--2-col">
-                            <input class="mdl-textfield__input" type="text" pattern="^140\.115\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)$"
-                                id="dorm-netflow-ipaddress">
-                            <label class="mdl-textfield__label" for="dorm-netflow-ipaddress">IP Address</label>
-                            <span class="mdl-textfield__error">輸入務必為中央大學 IP 位址格式！</span>
-                        </div>
+                        <button id="dorm-netflow-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect mdl-cell mdl-cell--middle mdl-cell--2-col">
+                            設定監控 IP 位址
+                        </button>
                         <div class="mdl-layout-spacer"></div>
                         <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
                             <label id="dorm-netflow" class="mdl-switch mdl-js-switch mdl-js-ripple-effect" for="dorm-netflow-checkbox">
@@ -121,6 +119,22 @@
                                 <span class="mdl-switch__label"></span>
                             </label>
                         </div>
+                        <dialog id="dorm-netflow-dialog" class="mdl-dialog">
+                            <h4 class="mdl-dialog__title">監控 IP 位址</h4>
+                            <div class="mdl-dialog__content">
+                                <p>設定監控目標的中央大學宿舍 IP 位址。</p>
+                                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                                    <input class="mdl-textfield__input" type="text" pattern="^140\.115\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)$"
+                                        id="dorm-netflow-ipaddress" required>
+                                    <label class="mdl-textfield__label" for="dorm-netflow-ipaddress">IP Address</label>
+                                    <span class="mdl-textfield__error">輸入務必為中央大學 IP 位址格式。</span>
+                                </div>
+                            </div>
+                            <div class="mdl-dialog__actions">
+                                <button type="button" class="mdl-button">確定</button>
+                                <button type="button" class="mdl-button">取消</button>
+                            </div>
+                        </dialog>
                     </div>
                 </div>
             </div>
