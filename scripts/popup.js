@@ -17,6 +17,7 @@ netflowIframe.setAttribute('class', 'netflow');
     chrome.runtime.sendMessage(
         {name: 'dormNetflowUsage'},
         (response) => {
+            console.log('get response of dormNetflowUsage');
             if (response.length === 0) {
                 if (!plot.firstElementChild) {
                     plot.appendChild(loading);

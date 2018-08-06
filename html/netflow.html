@@ -58,7 +58,6 @@
         }
 
         window.addEventListener('message', function(event) {
-            console.log(event);
             switch (event.data.command) {
                 case 'render':
                     plotHistgram(event.data.context);

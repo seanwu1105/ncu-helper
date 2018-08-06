@@ -5,16 +5,30 @@
  * NCU CSIE, Taiwan
  */
 
-const TEST_IP = '140.115.212.6';
+const TEST_IP = '140.115.220.98';
 
 // Set default settings.
-chrome.storage.sync.set({
-    'portal': true,
-    'lms': true,
-    'score-inquiries': true,
-    'gpa': true,
-    'graduate': true,
-    'dorm-netflow': false,
+chrome.runtime.onInstalled.addListener((details) => {
+    chrome.storage.sync.get(null, (result) => {
+        if (result['portal'] === undefined) {
+            chrome.storage.sync.set({'portal': true});
+        }
+        if (result['lms'] === undefined) {
+            chrome.storage.sync.set({'lms': true});
+        }
+        if (result['score-inquiries'] === undefined) {
+            chrome.storage.sync.set({'score-inquiries': true});
+        }
+        if (result['gpa'] === undefined) {
+            chrome.storage.sync.set({'gpa': true});
+        }
+        if (result['graduate'] === undefined) {
+            chrome.storage.sync.set({'graduate': true});
+        }
+        if (result['dorm-netflow'] === undefined) {
+            chrome.storage.sync.set({'dorm-netflow': false});
+        }
+    });
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
