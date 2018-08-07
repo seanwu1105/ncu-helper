@@ -37,7 +37,7 @@ function syncToggles() {
             toggle.addEventListener('click', () => updateSettings(switchName));
         }
         syncDormNetflowBtnStatus();
-        updateCurrentMonitoringIpDisplay();
+        updateCurrentNetflowIp();
     });
 }
 
@@ -56,21 +56,32 @@ function syncDormNetflowBtnStatus() {
 }
 
 /**
- * Update the current monitoring IP address
+ * Update the current monitoring IP address.
  */
-function updateCurrentMonitoringIpDisplay() {
+function updateCurrentNetflowIp() {
     let currentIpAddressDisplay = document.getElementById('currentIpAddress');
     chrome.storage.sync.get('dormIpAddress', (result) => {
         if (!dormNetflowCheckbox.checked) {
             currentIpAddressDisplay.innerHTML = 'undefined';
-        } else currentIpAddressDisplay.innerHTML = result.dormIpAddress;
+        } else {
+            currentIpAddressDisplay.innerHTML = result.dormIpAddress;
+            chrome.runtime.sendMessage(
+                {
+                    name: 'updateDormNetflowIp',
+                    dormNetflowIp: result.dormIpAddress,
+                },
+                (response) => {
+                    if (!response) console.log('e: cannot update ip settings');
+                }
+            );
+        }
     });
 }
 
 // set the dialog open button events
 dormNetflowToggle.addEventListener('click', () => {
     syncDormNetflowBtnStatus();
-    updateCurrentMonitoringIpDisplay();
+    updateCurrentNetflowIp();
 });
 dormNetflowSetBtn.addEventListener(
     'click', () => dormNetflowDialog.showModal());
@@ -85,7 +96,7 @@ confirmDialogBtn.disabled = !ipAddressTextField.checkValidity();
 
 confirmDialogBtn.addEventListener('click', () => {
     chrome.storage.sync.set({dormIpAddress: ipAddressTextField.value});
-    updateCurrentMonitoringIpDisplay();
+    updateCurrentNetflowIp();
 });
 ipAddressTextField.addEventListener('input', () => {
     confirmDialogBtn.disabled = !ipAddressTextField.checkValidity();

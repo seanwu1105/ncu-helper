@@ -5,7 +5,7 @@
  * NCU CSIE, Taiwan
  */
 
-const TEST_IP = '140.115.220.98';
+let dormNetflowTargetIp = undefined;
 
 // Set default settings.
 chrome.runtime.onInstalled.addListener((details) => {
@@ -28,18 +28,20 @@ chrome.runtime.onInstalled.addListener((details) => {
         if (result['dorm-netflow'] === undefined) {
             chrome.storage.sync.set({'dorm-netflow': false});
         }
+        dormNetflowTargetIp = result['dormIpAddress'];
+        updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
     });
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
 let dormNetflowUsageSet = [];
 
-updateDormNetflowUsage(TEST_IP, dormNetflowUsageSet);
+updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
 
 chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 1});
 chrome.alarms.onAlarm.addListener((_alarm) => {
     dormNetflowUsageSet = [];
-    updateDormNetflowUsage(TEST_IP, dormNetflowUsageSet);
+    updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
 });
 
 // Deal with the request from popup.js
@@ -47,6 +49,12 @@ chrome.runtime.onMessage.addListener(
     (request, _sender, sendResponse) => {
         if (request.name === 'dormNetflowUsage') {
             sendResponse(dormNetflowUsageSet);
+        }
+        if (request.name === 'updateDormNetflowIp') {
+            dormNetflowTargetIp = request.dormNetflowIp;
+            dormNetflowUsageSet = [];
+            updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
+            sendResponse(true);
         }
     }
 );
@@ -57,11 +65,11 @@ chrome.runtime.onMessage.addListener(
 class NetflowUsage {
     /**
      * Construct a netflow usage data.
-     * @param {str} time A moment.js parsable string.
-     * @param {str|num} externalUpload The off compus upload netflow.
-     * @param {str|num} externalDownload The off compus download netflow.
-     * @param {str|num} totalUpload The total upload netflow.
-     * @param {str|num} totalDownload The total download netflow.
+     * @param {string} time A moment.js parsable string.
+     * @param {string|number} externalUpload The off compus upload netflow.
+     * @param {string|number} externalDownload The off compus download netflow.
+     * @param {string|number} totalUpload The total upload netflow.
+     * @param {string|number} totalDownload The total download netflow.
      */
     constructor(time, externalUpload, externalDownload,
         totalUpload, totalDownload) {
@@ -90,12 +98,13 @@ class NetflowUsage {
 /**
  * Send post request to `uncia.cc.ncu.edu.tw/dormnet` and get the 24 hrs dorm
  * net flow usage statistics. And save the result in netflowUsage.
- * @param {str} ipAddress The target ip address.
- * @param {[]} usageDataSet The return value of the callback of $.post,
- *                          containing all netflow usage data in an array.
+ * @param {string} ipAddress The target ip address.
+ * @param {NetflowUsage[]} usageDataSet The return value of the callback of
+ *                                      $.post, containing all netflow usage
+ *                                      data in an array.
  */
 function updateDormNetflowUsage(ipAddress, usageDataSet) {
-    let url = 'https://uncia.cc.ncu.edu.tw/dormnet/index.php';
+    let url = 'http://uncia.cc.ncu.edu.tw/dormnet/index.php';
     let proxy = 'https://cors-anywhere.herokuapp.com/';
     // Create a virtual document so that the browser does not automatically load
     // the images present in the supplied HTML.

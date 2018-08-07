@@ -6,6 +6,11 @@ h4#title {
     text-align: center;
 }
 
+div#netflow-plot {
+    text-align: center;
+    font-style: italic;
+}
+
 iframe.netflow {
     height: 50px;
 }
