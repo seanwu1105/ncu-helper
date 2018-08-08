@@ -2,13 +2,29 @@ body {
     width: 270px;
 }
 
+.mdl-list__item {
+    padding: 0 16px;
+}
+
 h4#title {
     text-align: center;
 }
 
-div#netflow-plot {
+div#netflow-plot p {
+    margin: 5px 0;
+}
+
+p#no-info {
     text-align: center;
     font-style: italic;
+}
+
+p#netflow-usage-digit {
+    text-align: right;
+}
+
+p#netflow-usage-digit > span {
+    font-weight: bold;
 }
 
 iframe.netflow {

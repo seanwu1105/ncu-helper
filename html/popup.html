@@ -14,7 +14,14 @@
 <body>
     <div class="mdl-grid">
         <h4 id="title" class="mdl-cell mdl-cell--12-col">NCU Helper</h4>
-        <div id="netflow-plot" class="mdl-cell mdl-cell--12-col"></div>
+        <div id="netflow-plot" class="mdl-cell mdl-cell--12-col">
+            <div style="display: none">
+                <div class="mdl-progress mdl-js-progress mdl-progress--indeterminate"></div>
+                <p id="netflow-usage-digit"><span></span> GB</p>
+                <iframe class="netflow"></iframe>
+            </div>
+            <p id="no-info" style="display: none">尚未開啟宿網流量監控</p>
+        </div>
         <div class="demo-list-action mdl-list mdl-cell mdl-cell--12-col">
             <div class="mdl-list__item">
                 <span class="mdl-list__item-primary-content">
@@ -47,16 +54,16 @@
                 </span>
             </div>
             <div class="mdl-list__item">
-                    <span class="mdl-list__item-primary-content">
-                        <i class="material-icons mdl-list__item-icon">branding_watermark</i>
-                        <span>License</span>
-                    </span>
-                    <span class="mdl-list__item-secondary-content">
-                        <a class="mdl-list__item-secondary-action" href="https://github.com/GLaDOS1105/ncu-helper/blob/master/LICENSE" target="_blank">
-                            <i class="material-icons">link</i>
-                        </a>
-                    </span>
-                </div>
+                <span class="mdl-list__item-primary-content">
+                    <i class="material-icons mdl-list__item-icon">branding_watermark</i>
+                    <span>License</span>
+                </span>
+                <span class="mdl-list__item-secondary-content">
+                    <a class="mdl-list__item-secondary-action" href="https://github.com/GLaDOS1105/ncu-helper/blob/master/LICENSE" target="_blank">
+                        <i class="material-icons">link</i>
+                    </a>
+                </span>
+            </div>
         </div>
     </div>
     <script src="../scripts/popup.js"></script>
