@@ -1,7 +1,6 @@
 /**
  * Author: Sean Wu
  * NCU CSIE, Taiwan
- * This code is still messy.
  */
 
 chrome.storage.sync.get('gpa', (result) => {
