@@ -1,6 +1,6 @@
 # NCU Helper
 
-Add some features and change the design of NCU webpages in more modern style.
+Add some features and change the design of NCU web pages in a more modern style.
 
 ![GPA Calculation](https://i.imgur.com/QcwunE7.gif)
 ![Portal Preview](https://i.imgur.com/OcwXEBk.png)
@@ -15,9 +15,9 @@ Add some features and change the design of NCU webpages in more modern style.
 
 1. Beautify LMS (Learning Management System)
 2. Beautify NCU Portal Login Page
-3. Beautify NCU CIS Score Inquiries Webpages and Automatically Calculate GPA (zhTW only)
+3. Beautify NCU CIS Score Inquiries web pages and Automatically Calculate GPA (zhTW only)
 4. Beautify NCU CIS Graduation Check List
-5. Dorm Netflow Upload Stream Monitoring (get info to avoid violate the limit and banned by NCUCC)
+5. Dorm Netflow Upload Stream Monitoring (get info to avoid violating the limit and banned by NCUCC)
 
 ### GPA Support
 
@@ -51,13 +51,13 @@ Add some features and change the design of NCU webpages in more modern style.
 Go to settings and set the target NCU dorm IP address.
 ![Dorm Netflow Setting](https://i.imgur.com/SOSOTUG.png)
 
-The netflow data source is: <https://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow>
+The net flow data source is: <https://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow>
 
 > The extension will **NOT** automatically upload your IP address which is stored locally in your chrome.
 
 ## Installation
 
-Install in Chrome Extension WebStore: <https://goo.gl/YM69cw>
+Install in Chrome Extension website: <https://goo.gl/YM69cw>
 
 ## Motivation
 
