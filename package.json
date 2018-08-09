@@ -26,5 +26,8 @@
     "eslint-config-google": "^0.9.1",
     "eslint-plugin-html": "^4.0.5",
     "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "jquery": "^3.3.1"
   }
 }
