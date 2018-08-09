@@ -94,8 +94,8 @@
                         </div>
                         <div class="mdl-cell mdl-cell--10-col">
                             <h5>GPA 計算工具</h5>
-                            啟用 GPA 計算工具，所有計算皆在本地端運行，不會上傳任何個人資料，如有疑慮請聯絡開發者或自行參考原始碼。此效果會套用至
-                            <code>https://cis.ncu.edu.tw/ScoreInquiries/*</code> 等網頁。
+                            啟用 GPA 計算工具。所有計算皆在本地端運行，不會上傳任何個人資料，如有疑慮請聯絡開發者或自行參考原始碼。此效果會套用至
+                            <code>https://cis.ncu.edu.tw/ScoreInquiries/*</code> 等網頁。計算後成績僅供參考。
                         </div>
                         <div class="mdl-layout-spacer"></div>
                         <div class="mdl-cell mdl-cell--middle mdl-cell--1-col">
@@ -109,7 +109,8 @@
                             <p>當前設定：
                                 <code id="currentIpAddress"></code>
                             </p>
-                            啟用宿網流量監控工具。監控宿網流量並顯示剩餘上傳流量在彈跳視窗（popup），以方便確保使用者不會超量使用（24 小時內上傳流量超過 3GB）導致計算機中心鎖卡。
+                            啟用宿網流量監控工具。監控宿網流量並顯示剩餘上傳流量在彈跳視窗（popup），以方便使用者得知會不會超量使用（24 小時內上傳流量超過 3GB）導致計算機中心鎖卡。設定新 IP 位址後，需要等待至多 5 分鐘取得流量資訊。流量資訊僅供參考，實際資訊請至
+                            <a href="http://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow">中央大學學生宿舍網路系統</a>查詢。
                         </div>
                         <div class="mdl-layout-spacer"></div>
                         <button id="dorm-netflow-btn" class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent mdl-js-ripple-effect mdl-cell mdl-cell--middle mdl-cell--2-col">
@@ -147,10 +148,18 @@
                     </p>
                     <p>Local Libraries</p>
                     <ul>
-                        <li>jQuery <code>3.3.1</code></li>
-                        <li>Material Design Lite <code>1.3.0</code></li>
-                        <li>Moment <code>2.22.2</code></li>
-                        <li>Plotly <code>1.39.4</code></li>
+                        <li>jQuery
+                            <code>3.3.1</code>
+                        </li>
+                        <li>Material Design Lite
+                            <code>1.3.0</code>
+                        </li>
+                        <li>Moment
+                            <code>2.22.2</code>
+                        </li>
+                        <li>Plotly
+                            <code>1.39.4</code>
+                        </li>
                     </ul>
                 </div>
             </div>

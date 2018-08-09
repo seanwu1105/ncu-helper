@@ -6,13 +6,12 @@
  * NCU CSIE, Taiwan
  */
 
-chrome.storage.sync.get('lms', (result) => {
-    let switcher = result.lms;
-    if (switcher) {
+chrome.storage.sync.get('graduate', (result) => {
+    if (result['graduate']) {
         // load css.
         const link = document.createElement('link');
-        link.setAttribute(
-            'href', chrome.extension.getURL('stylesheets/lms.css'));
+        link.setAttribute('href', chrome.extension.getURL(
+            'stylesheets/graduate.css'));
         link.setAttribute('rel', 'stylesheet');
         const head = document.head || document.getElementsByTagName('head')[0]
             || document.documentElement;

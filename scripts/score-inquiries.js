@@ -3,6 +3,19 @@
  * NCU CSIE, Taiwan
  */
 
+chrome.storage.sync.get('score-inquiries', (result) => {
+    if (result['score-inquiries']) {
+        // load css.
+        const link = document.createElement('link');
+        link.setAttribute('href', chrome.extension.getURL(
+            'stylesheets/score-inquiries.css'));
+        link.setAttribute('rel', 'stylesheet');
+        const head = document.head || document.getElementsByTagName('head')[0]
+            || document.documentElement;
+        head.insertBefore(link, head.lastChild);
+    }
+});
+
 chrome.storage.sync.get('gpa', (result) => {
     if (result.gpa) {
         const link = document.createElement('link');
@@ -12,7 +25,9 @@ chrome.storage.sync.get('gpa', (result) => {
         const head = document.head || document.getElementsByTagName('head')[0]
             || document.documentElement;
         head.insertBefore(link, head.lastChild);
-        buildGpaCalculator();
+        $(document).ready(() => {
+            buildGpaCalculator();
+        });
     }
 });
 

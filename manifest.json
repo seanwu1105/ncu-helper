@@ -25,21 +25,10 @@
     "content_scripts": [{
             "matches": ["https://lms.ncu.edu.tw/*"],
             "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
-            "js": ["scripts/lms.switch.js"],
-            "all_frames": true,
-            "run_at": "document_start"
-        },
-        {
-            "matches": ["https://lms.ncu.edu.tw/*"],
-            "exclude_matches": ["https://lms.ncu.edu.tw/rss/*"],
-            "js": ["scripts/lms.js"],
-            "all_frames": true,
-            "run_at": "document_end"
-        },
-        {
-            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/*"],
-            "exclude_matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "js": ["scripts/score-inquiries.switch.js"],
+            "js": [
+                "lib/jquery-3.3.1.min.js",
+                "scripts/lms.js"
+            ],
             "all_frames": true,
             "run_at": "document_start"
         },
@@ -55,19 +44,16 @@
         },
         {
             "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "js": ["scripts/score-inquiries-header.switch.js"],
+            "js": [
+                "lib/jquery-3.3.1.min.js",
+                "scripts/score-inquiries-header.js"
+            ],
             "all_frames": true,
             "run_at": "document_start"
         },
         {
-            "matches": ["https://cis.ncu.edu.tw/ScoreInquiries/student_top.php*"],
-            "js": ["scripts/score-inquiries-header.js"],
-            "all_frames": true,
-            "run_at": "document_end"
-        },
-        {
             "matches": ["https://cis.ncu.edu.tw/grad/index.php*"],
-            "js": ["scripts/graduate.switch.js"],
+            "js": ["scripts/graduate.js"],
             "run_at": "document_start"
         },
         {
@@ -78,7 +64,7 @@
                 "https://portal.ncu.edu.tw/system/147*",
                 "https://portal.ncu.edu.tw/system/162*"
             ],
-            "js": ["scripts/portal.switch.js"],
+            "js": ["scripts/portal.js"],
             "run_at": "document_start"
         }
     ],

@@ -44,7 +44,7 @@ Add some features and change the design of NCU webpages in more modern style.
 
 ### Dorm Netflow Monitoring
 
-![Dorm Netflow](https://i.imgur.com/BfMLNdw.gif)
+![Dorm Netflow](https://i.imgur.com/gh9Cxue.gif)
 
 #### Setup the IP Address
 
