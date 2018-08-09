@@ -29,19 +29,18 @@ chrome.runtime.onInstalled.addListener((details) => {
             chrome.storage.sync.set({'dorm-netflow': false});
         }
         dormNetflowTargetIp = result['dormIpAddress'];
-        updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
+        updateDormNetflowUsage(dormNetflowTargetIp);
     });
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
 let dormNetflowUsageSet = [];
 
-updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
+updateDormNetflowUsage(dormNetflowTargetIp);
 
-chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 1});
+chrome.alarms.create('dormNetflowUsage', {periodInMinutes: 3});
 chrome.alarms.onAlarm.addListener((_alarm) => {
-    dormNetflowUsageSet = [];
-    updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
+    updateDormNetflowUsage(dormNetflowTargetIp);
 });
 
 // Deal with the request from popup.js
@@ -52,8 +51,7 @@ chrome.runtime.onMessage.addListener(
         }
         if (request.name === 'updateDormNetflowIp') {
             dormNetflowTargetIp = request.dormNetflowIp;
-            dormNetflowUsageSet = [];
-            updateDormNetflowUsage(dormNetflowTargetIp, dormNetflowUsageSet);
+            updateDormNetflowUsage(dormNetflowTargetIp);
             sendResponse(true);
         }
     }
@@ -99,24 +97,22 @@ class NetflowUsage {
  * Send post request to `uncia.cc.ncu.edu.tw/dormnet` and get the 24 hrs dorm
  * net flow usage statistics. And save the result in netflowUsage.
  * @param {string} ipAddress The target ip address.
- * @param {NetflowUsage[]} usageDataSet The return value of the callback of
- *                                      $.post, containing all netflow usage
- *                                      data in an array.
  */
-function updateDormNetflowUsage(ipAddress, usageDataSet) {
+function updateDormNetflowUsage(ipAddress) {
     let url = 'http://uncia.cc.ncu.edu.tw/dormnet/index.php';
     let proxy = 'https://cors-anywhere.herokuapp.com/';
     // Create a virtual document so that the browser does not automatically load
     // the images present in the supplied HTML.
     // More info: https://stackoverflow.com/questions/15113910/jquery-parse-html-without-loading-images/33825198#33825198
     let ownerDocument = document.implementation.createHTMLDocument('virtual');
+    let usageDataSet = [];
     $.post(proxy + url,
         {
             section: 'netflow',
             ip: ipAddress,
         },
-        (html, status) => {
-            console.log('updateDormNetflow status: ' + status);
+        (html, _status) => {
+            console.log('Dorm netflow info updated.');
             let table = $(html, ownerDocument).find(
                 'table[border="1"][cellspacing="0"][cellpadding="5"]');
             $.each($('tr[bgcolor="#ffffee"], tr[bgcolor="#eeeeee"]', table),
@@ -129,5 +125,6 @@ function updateDormNetflowUsage(ipAddress, usageDataSet) {
                     ));
                 });
             usageDataSet.reverse();
+            dormNetflowUsageSet = usageDataSet;
         });
 };
