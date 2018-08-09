@@ -2,12 +2,12 @@
 
 Add some features and change the design of NCU web pages in a more modern style.
 
-![Portal Preview](https://i.imgur.com/eUBvdGJ.png)
-![LMS Preview 1](https://i.imgur.com/m8mPeDm.png)
-![LMS Preview 2](https://i.imgur.com/loFFgbD.png)
+![Portal](https://i.imgur.com/eUBvdGJ.png)
+![LMS 1](https://i.imgur.com/m8mPeDm.png)
+![LMS 2](https://i.imgur.com/loFFgbD.png)
 ![Score Inquiries](https://i.imgur.com/1NIVysp.png)
 
-* Version: `2.1.0`
+* Version: `2.1.1`
 
 > All calculation is running in **local** browser.
 

@@ -2,7 +2,7 @@ const DORM_NETFLOW_LIMIT = 3 * 1024 * 1024 * 1024;
 
 // Add settings.html href to link.
 document.getElementById('settings-link').setAttribute(
-    'href', chrome.extension.getURL('html/settings.html'));
+    'href', chrome.extension.getURL('html/options.html'));
 
 // create possible elements in #netflow-plot div
 let plot = document.getElementById('netflow-plot');
