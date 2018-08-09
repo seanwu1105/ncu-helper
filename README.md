@@ -2,10 +2,10 @@
 
 Add some features and change the design of NCU web pages in a more modern style.
 
-![GPA Calculation](https://i.imgur.com/QcwunE7.gif)
-![Portal Preview](https://i.imgur.com/OcwXEBk.png)
-![LMS Preview 1](https://i.imgur.com/R2joDQJ.png)
-![LMS Preview 2](https://i.imgur.com/hukqQzO.png)
+![Portal Preview](https://i.imgur.com/eUBvdGJ.png)
+![LMS Preview 1](https://i.imgur.com/m8mPeDm.png)
+![LMS Preview 2](https://i.imgur.com/loFFgbD.png)
+![Score Inquiries](https://i.imgur.com/1NIVysp.png)
 
 * Version: `2.1.0`
 
@@ -27,6 +27,8 @@ Add some features and change the design of NCU web pages in a more modern style.
 * Senior/Junior GPA
 
 ### Calculating Modes
+
+![GPA Calculation](https://i.imgur.com/QcwunE7.gif)
 
 #### NCU (4.0)
 
