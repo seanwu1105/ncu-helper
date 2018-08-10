@@ -1,13 +1,15 @@
 # NCU Helper
 
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/v/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb/reviews)
+[![Chrome Web Store](https://img.shields.io/chrome-web-store/users/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb)
+
 Add some features and change the design of NCU web pages in a more modern style.
 
 ![Portal](https://i.imgur.com/eUBvdGJ.png)
 ![LMS 1](https://i.imgur.com/m8mPeDm.png)
 ![LMS 2](https://i.imgur.com/loFFgbD.png)
 ![Score Inquiries](https://i.imgur.com/1NIVysp.png)
-
-* Version: `2.1.3`
 
 > All calculation is running in **local** browser.
 
