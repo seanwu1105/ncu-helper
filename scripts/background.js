@@ -28,9 +28,12 @@ chrome.runtime.onInstalled.addListener((details) => {
         if (result['dorm-netflow'] === undefined) {
             chrome.storage.sync.set({'dorm-netflow': false});
         }
-        dormNetflowTargetIp = result['dormIpAddress'];
-        updateDormNetflowUsage(dormNetflowTargetIp);
     });
+});
+
+chrome.storage.sync.get('dormIpAddress', (result) => {
+    dormNetflowTargetIp = result.dormIpAddress;
+    updateDormNetflowUsage(dormNetflowTargetIp);
 });
 
 // Get and set the alarm to update the info of NCU dorm netflow usage per minute
