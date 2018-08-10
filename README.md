@@ -7,7 +7,7 @@ Add some features and change the design of NCU web pages in a more modern style.
 ![LMS 2](https://i.imgur.com/loFFgbD.png)
 ![Score Inquiries](https://i.imgur.com/1NIVysp.png)
 
-* Version: `2.1.2`
+* Version: `2.1.3`
 
 > All calculation is running in **local** browser.
 

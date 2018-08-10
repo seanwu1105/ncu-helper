@@ -1,6 +1,6 @@
 {
   "name": "ncu-helper",
-  "version": "2.1.2",
+  "version": "2.1.3",
   "description": "Add some features and change the design of NCU webpages into mroe modern style.",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
