@@ -3,6 +3,7 @@
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/v/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/rating/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb/reviews)
 [![Chrome Web Store](https://img.shields.io/chrome-web-store/users/khhogbhcofdjjccjhgganhkhokibnfnb.svg)](https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb)
+[![dependencies Status](https://david-dm.org/GLaDOS1105/ncu-helper/status.svg)](https://david-dm.org/GLaDOS1105/ncu-helper)
 
 Add some features and change the design of NCU web pages in a more modern style.
 
