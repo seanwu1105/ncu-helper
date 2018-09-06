@@ -17,11 +17,12 @@ td[bgcolor] {
 .container-fluid,
 .row,
 .col-xs-12 {
-    height: 100% !important;
+    height: inherit !important;
 }
 
 #myFrame {
     height: 99% !important;
+    width: inherit !important;
 }
 
 /* bootstrap */
