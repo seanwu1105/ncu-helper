@@ -25,7 +25,8 @@ td[bgcolor] {
 }
 
 /* bootstrap */
-.panel {
+.panel,
+.list-group-item {
     background-color: #4f5359 !important;
 }
 
