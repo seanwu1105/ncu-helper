@@ -73,11 +73,32 @@ by hands is slow and dumb.
 
 Current only support Google Chrome.
 
-## TODOs
+## Project Setup
 
-* [ ] Include more webpages in beautified.
-* [x] GPA calculator.
-* [x] Add switch for each webpage to activate this extension on the `popup.html`.
-* [x] Dynamically display dorm IP upload/download stream usage.
-* [ ] Unit test (but for Chrome Extension, unit test is rather cumbersome...)
-* [ ] Convert JavaScript files into TypeScript
+``` bash
+npm install
+```
+
+### Compiles and Hot-Reloads for Development
+
+``` bash
+npm run serve
+```
+
+### Compiles and Minifies for Production
+
+``` bash
+npm run build
+```
+
+### Run Your Tests
+
+``` bash
+npm run test
+```
+
+### Lints and Fixes Files
+
+``` bash
+npm run lint
+```
