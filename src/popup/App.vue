@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-view></router-view>
+    This is popup.
   </div>
 </template>
 

@@ -24,9 +24,11 @@ module.exports = {
         },
         contentScripts: {
           entries: {
-            'content_scripts/content-script': [
-              'src/content_scripts/content-script.js'
-            ]
+            'content_scripts/graduate': 'src/content_scripts/graduate.js',
+            'content_scripts/lms': 'src/content_scripts/lms.js',
+            'content_scripts/portal': 'src/content_scripts/portal.js',
+            'content_scripts/score-inquiries-header': 'src/content_scripts/score-inquiries-header.js',
+            'content_scripts/score-inquiries': 'src/content_scripts/score-inquiries.js'
           }
         }
       }
