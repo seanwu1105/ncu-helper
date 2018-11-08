@@ -21,7 +21,6 @@ chrome.runtime.onInstalled.addListener(() => {
 
 /* Dorm Netflow */
 let dormIpAddress
-let dormNetflowUsageSet = [] // This will be requested by popup.
 
 // Initialize the update alarms.
 chrome.storage.sync.get('dormIpAddress', result => {
@@ -33,7 +32,6 @@ chrome.storage.sync.get('dormIpAddress', result => {
 
 // Initialize message listeners.
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
-  if (message.name === 'getDormNetflowUsage') sendResponse(dormNetflowUsageSet)
   if (message.name === 'updateDormIpAddress') {
     dormIpAddress = message.dormIpAddress
     updateDormNetflowUsage()
@@ -43,7 +41,8 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
 
 /**
  * Send post request to `uncia.cc.ncu.edu.tw/dormnet` and get the 24 hrs dorm
- * net flow usage statistics. And save the result in netflowUsage.
+ * net flow usage statistics. And save the result in netflowUsage of local
+ * storage.
  * @param {string} ipAddress The target ip address.
  */
 function updateDormNetflowUsage () {
@@ -59,7 +58,7 @@ function updateDormNetflowUsage () {
           const data = []
           tr.querySelectorAll('td').forEach((td, idx) => { data[idx] = td.innerText })
           ret.push({
-            time: moment(data[0]),
+            time: moment(data[0]).toISOString(),
             externalUpload: Number(data[1]),
             externalDownload: Number(data[2]),
             totalUpload: Number(data[3]),
@@ -67,7 +66,7 @@ function updateDormNetflowUsage () {
           })
         })
         ret.reverse()
-        dormNetflowUsageSet = ret
+        chrome.storage.local.set({ dormNetflowUsageSet: ret })
       }
     })
     xhr.open('post', url, true)
