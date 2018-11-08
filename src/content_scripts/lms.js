@@ -14,7 +14,7 @@ import { insertCSS } from './common'
       homepageLink.href = ('https://lms.ncu.edu.tw/')
       logo.id = 'logo'
       icon.src = chrome.extension.getURL('images/ncu-logo.svg')
-      title.innerHTML = 'LMS'
+      title.innerText = 'LMS'
       logo.appendChild(icon)
       logo.appendChild(title)
       homepageLink.appendChild(logo)
