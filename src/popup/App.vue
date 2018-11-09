@@ -8,7 +8,7 @@
         <v-btn icon @click="openOptionsPage" slot="activator">
           <v-icon>settings</v-icon>
         </v-btn>
-        <span>Open Options Page</span>
+        <span>設定</span>
       </v-tooltip>
       <v-menu bottom left>
         <v-btn slot="activator" icon>

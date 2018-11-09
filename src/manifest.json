@@ -68,5 +68,5 @@
       "run_at": "document_start"
     }
   ],
-  "web_accessible_resources": ["stylesheets/*.css", "images/*"]
+  "web_accessible_resources": ["stylesheets/*.css", "images/*", "icons/*"]
 }

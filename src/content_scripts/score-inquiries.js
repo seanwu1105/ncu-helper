@@ -22,7 +22,7 @@ function buildGpaCalculator () {
    * @return {{num, num}[]} List of pair {credit, gp}.
    */
   function getGpList () {
-    let gpList = []
+    const gpList = []
     for (let score of scoreCol) {
       if (isValidScore(score) && score.classList.contains('selected')) {
         gpList.push({
@@ -72,9 +72,9 @@ function buildGpaCalculator () {
   if (centerBody) {
     // Append GPA column.
     const mainTable = document.getElementsByTagName('table')[0]
-    mainTable.setAttribute('id', 'main-table')
+    mainTable.id = 'main-table'
     const GpaHeader = document.createElement('td')
-    GpaHeader.innerText = 'GPA Score'
+    GpaHeader.innerText = '量尺分數 (GPA Calculator)'
     const mainTableBody = mainTable.firstElementChild
     mainTableBody.firstElementChild.appendChild(GpaHeader)
     scoreCol = mainTableBody.querySelectorAll('tr.list1')
@@ -82,12 +82,6 @@ function buildGpaCalculator () {
       score.appendChild(document.createElement('td'))
     }
 
-    /**
-     * Make the main table (score of credits) selectable.
-     * Use 'event.currentTarget' instead of 'this' to avoid ESLint
-     * error.
-     * https://github.com/eslint/eslint/issues/632#issuecomment-164742012
-     */
     centerBody.querySelectorAll('#main-table tr.list1 td').forEach(
       node => node.addEventListener('click', () => {
         const tr = node.parentNode
@@ -104,6 +98,13 @@ function buildGpaCalculator () {
 
     // Create GPA table.
     const gpaPanel = document.createElement('div')
+    const ncuHelperIconCell = document.createElement('div')
+    const ncuHelperIcon = document.createElement('img')
+    ncuHelperIcon.src = chrome.extension.getURL('icons/48.png')
+    ncuHelperIcon.alt = 'NCU Helper'
+    ncuHelperIcon.title = 'NCU Helper'
+    ncuHelperIcon.id = 'ncu-helper-icon'
+    ncuHelperIconCell.appendChild(ncuHelperIcon)
     const gpaPanelTitle = document.createElement('span')
     gpaPanelPoint = document.createElement('span')
     const gpaModes = document.createElement('div')
@@ -136,11 +137,11 @@ function buildGpaCalculator () {
     const selectLast60Btn = document.createElement('button')
     const selectSeniorJuniorBtn = document.createElement('button')
     const deselectAllBtn = document.createElement('button')
-    selectAllBtn.innerText = 'Select All'
-    selectMajorBtn.innerText = 'Select All Major'
-    selectLast60Btn.innerText = 'Select Last 60 Credits'
-    selectSeniorJuniorBtn.innerText = 'Select All Senior/Junior Courses'
-    deselectAllBtn.innerText = 'Deselect All'
+    selectAllBtn.innerText = '全選'
+    selectMajorBtn.innerText = '全選必修'
+    selectLast60Btn.innerText = '全選最後 60 學分'
+    selectSeniorJuniorBtn.innerText = '全選大三四課程'
+    deselectAllBtn.innerText = '取消全選'
 
     gpaPanel.id = 'GPA'
     gpaPanelTitle.id = 'GPATitle'
@@ -149,6 +150,7 @@ function buildGpaCalculator () {
     gpaPanelPoint.innerText = 0
     gpaModes.id = 'GPAModes'
 
+    gpaPanel.appendChild(ncuHelperIconCell)
     gpaPanel.appendChild(gpaPanelTitle)
     gpaPanel.appendChild(gpaPanelPoint)
     gpaPanel.appendChild(gpaModes)

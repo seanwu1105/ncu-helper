@@ -51,3 +51,8 @@ center {
 tr.selected {
     background-color: rgba(64, 124, 255, 0.8) !important;
 }
+
+#ncu-helper-icon {
+    margin: 0 10px 10px 10px;
+    vertical-align: middle;
+}
