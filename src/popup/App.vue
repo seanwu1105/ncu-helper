@@ -4,6 +4,12 @@
       <img src="@/assets/logo.png" alt="NCU Helper" class="logo ma-1">
       <v-toolbar-title>NCU Helper</v-toolbar-title>
       <v-spacer></v-spacer>
+      <v-tooltip bottom>
+        <v-btn icon @click="openOptionsPage" slot="activator">
+          <v-icon>settings</v-icon>
+        </v-btn>
+        <span>Open Options Page</span>
+      </v-tooltip>
       <v-menu bottom left>
         <v-btn slot="activator" icon>
           <v-icon>more_vert</v-icon>
@@ -28,13 +34,15 @@
         <v-layout row wrap>
           <v-subheader>宿舍上傳流量</v-subheader>
           <v-spacer></v-spacer>
-          <span class="my-2"><code>{{ dormIpAddress || '未設定' }}</code></span>
-        </v-layout>
-        <v-layout row wrap align-center>
+          <v-tooltip bottom>
+            <span class="my-2" slot="activator">
+              <code>{{ dormNetflowUsageEnabled ? dormIpAddress || '未設定' : '未開啟宿網流量顯示功能'}}</code>
+            </span>
+            <span>{{ dormNetflowUsageEnabled ? '目前追蹤宿網 IP 位址' || '需至設定頁面設定目標 IP 位址' : '需至設定頁面開啟宿網流量顯示功能'}}</span>
+          </v-tooltip>
           <v-flex xs9>
             <v-progress-linear
               v-model="totalDormExternalUploadUsageRatio"
-              :indeterminate="!dormNetflowUsageEnabled"
               :color="totalDormExternalUploadUsageRatio > 100 ? 'error' : undefined"
             ></v-progress-linear>
           </v-flex>
@@ -46,12 +54,14 @@
               / 3 GB
             </span>
           </v-flex>
+          <v-flex xs12>
+            <apexcharts
+              type="bar"
+              :options="chartOptions"
+              :series="series"
+            ></apexcharts>
+          </v-flex>
         </v-layout>
-        <apexcharts
-          type="bar"
-          :options="chartOptions"
-          :series="series"
-        ></apexcharts>
       </v-container>
     </v-content>
   </v-app>
@@ -72,10 +82,6 @@ export default {
         action: () => { open('https://portal.ncu.edu.tw/system/162') },
         icon: 'pages'
       }, {
-        title: '設定',
-        action: () => { chrome.runtime.openOptionsPage() },
-        icon: 'settings'
-      }, {
         title: '評分擴充程式',
         action: () => { open('https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb') },
         icon: 'rate_review'
@@ -87,13 +93,18 @@ export default {
       dormNetflowUsageEnabled: true,
       dormIpAddress: '',
       dormNetflowUsageSet: [],
-      noDataPlacehold: []
+      noDataPlaceholder: [],
+      noDataPlaceholderTimer: undefined,
+      noDataPlaceholderCounter: 0,
+      noDataPlaceholderSampleNum: 25
     }
   },
   computed: {
     dark () { return (this.theme === 'dark') },
     totalDormExternalUploadUsage () {
-      if (!this.dormNetflowUsageEnabled || !this.dormNetflowUsageSet) return '??'
+      if (!this.dormNetflowUsageEnabled) {
+        return (this.noDataPlaceholder.reduce((a, b) => a + b, 0) / this.noDataPlaceholderSampleNum).toFixed(2)
+      } else if (!this.dormNetflowUsageSet) return '??'
       return (this.dormNetflowUsageSet.reduce((prev, cur) => {
         return prev + cur.externalUpload
       }, 0) / 1024 / 1024 / 1024).toFixed(2)
@@ -103,7 +114,7 @@ export default {
     },
     series () {
       if (!this.dormNetflowUsageEnabled || !this.dormNetflowUsageSet) {
-        return [{ name: '', data: this.noDataPlacehold }]
+        return [{ name: '', data: this.noDataPlaceholder }]
       }
       return [{
         name: '校外上傳',
@@ -117,7 +128,8 @@ export default {
       return {
         chart: {
           stacked: true,
-          zoom: { enabled: false }
+          zoom: { enabled: false },
+          animations: { easing: 'linear' }
         },
         grid: { padding: { top: -20 } },
         xaxis: {
@@ -138,7 +150,6 @@ export default {
         dataLabels: { enabled: false },
         tooltip: {
           enabled: this.dormNetflowUsageEnabled,
-          shared: true,
           x: { format: 'MMM dd HH:mm' },
           theme: this.theme
         },
@@ -156,7 +167,10 @@ export default {
         this.theme = results.theme
         this.dormIpAddress = results.dormIpAddress
         this.dormNetflowUsageEnabled = results['dorm-netflow']
-        if (!this.dormNetflowUsageEnabled) this.displayNoData()
+        if (!this.dormNetflowUsageEnabled) {
+          this.changeNoDataPlaceholder()
+          this.noDataPlaceholderTimer = setInterval(this.changeNoDataPlaceholder, 350)
+        }
       })
     },
     updateDormNetflowUsageSet () {
@@ -164,13 +178,26 @@ export default {
         this.dormNetflowUsageSet = results.dormNetflowUsageSet
       })
     },
-    displayNoData () {
-      this.noDataPlacehold = [1, 2, 3, 4]
+    changeNoDataPlaceholder () {
+      const placeholder = []
+      for (let i = 0; i < this.noDataPlaceholderSampleNum; i++) {
+        placeholder.push(
+          Math.sin((this.noDataPlaceholderCounter + i) * 2.7 * Math.PI / this.noDataPlaceholderSampleNum) + 1
+        )
+      }
+      this.noDataPlaceholderCounter++
+      this.noDataPlaceholder = placeholder
+    },
+    openOptionsPage () {
+      chrome.runtime.openOptionsPage()
     }
   },
   created () {
     this.initialize()
     this.updateDormNetflowUsageSet()
+  },
+  beforeDestroy () {
+    clearInterval(this.noDataPlaceholderTimer)
   }
 }
 </script>
