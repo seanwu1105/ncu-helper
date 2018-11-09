@@ -79,15 +79,15 @@ export default {
       theme: 'dark',
       menuItems: [{
         title: '計算 GPA',
-        action: () => { open('https://portal.ncu.edu.tw/system/162') },
+        action () { open('https://portal.ncu.edu.tw/system/162') },
         icon: 'pages'
       }, {
         title: '評分擴充程式',
-        action: () => { open('https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb') },
+        action () { open('https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb') },
         icon: 'rate_review'
       }, {
         title: '錯誤回報',
-        action: () => { open('https://github.com/GLaDOS1105/ncu-helper/issues') },
+        action () { open('https://github.com/GLaDOS1105/ncu-helper/issues') },
         icon: 'bug_report'
       }],
       dormNetflowUsageEnabled: true,
