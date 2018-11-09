@@ -7,7 +7,7 @@ const defaultOptions = {
   'score-inquiries': true,
   'gpa': true,
   'graduate': true,
-  'dorm-netflow': false,
+  'dorm-netflow': false, // is dorm-netflow usage enabled
   'dormIpAddress': undefined
 }
 

@@ -25,10 +25,27 @@
     </v-toolbar>
     <v-content>
       <v-container fluid>
-        <v-layout row>
+        <v-layout row wrap>
           <v-subheader>宿舍上傳流量</v-subheader>
           <v-spacer></v-spacer>
-          <span class="my-2"><code>{{ dormIpAddress }}</code></span>
+          <span class="my-2"><code>{{ dormIpAddress || '未設定' }}</code></span>
+        </v-layout>
+        <v-layout row wrap align-center>
+          <v-flex xs9>
+            <v-progress-linear
+              v-model="totalDormExternalUploadUsageRatio"
+              :indeterminate="!dormNetflowUsageEnabled"
+              :color="totalDormExternalUploadUsageRatio > 100 ? 'error' : undefined"
+            ></v-progress-linear>
+          </v-flex>
+          <v-flex xs3 fill-height class="text-xs-center">
+            <span class="body-1">
+              <span :class="totalDormExternalUploadUsageRatio > 100 ? 'error--text' : ''">
+              {{ totalDormExternalUploadUsage }}
+              </span>
+              / 3 GB
+            </span>
+          </v-flex>
         </v-layout>
         <apexcharts
           type="bar"
@@ -49,7 +66,7 @@ export default {
   },
   data () {
     return {
-      dark: false,
+      theme: 'dark',
       menuItems: [{
         title: '計算 GPA',
         action: () => { open('https://portal.ncu.edu.tw/system/162') },
@@ -67,20 +84,27 @@ export default {
         action: () => { open('https://github.com/GLaDOS1105/ncu-helper/issues') },
         icon: 'bug_report'
       }],
+      dormNetflowUsageEnabled: true,
       dormIpAddress: '',
       dormNetflowUsageSet: [],
-      chartOptions: {
-        chart: { stacked: true, zoom: { enabled: false } },
-        xaxis: { type: 'datetime' },
-        yaxis: { labels: { formatter: value => (value / 1024 / 1024).toFixed(2) + 'MB' } },
-        dataLabels: { enabled: false },
-        tooltip: { shared: true, x: { format: 'MMM dd HH:mm' } }
-      }
+      noDataPlacehold: []
     }
   },
   computed: {
+    dark () { return (this.theme === 'dark') },
+    totalDormExternalUploadUsage () {
+      if (!this.dormNetflowUsageEnabled || !this.dormNetflowUsageSet) return '??'
+      return (this.dormNetflowUsageSet.reduce((prev, cur) => {
+        return prev + cur.externalUpload
+      }, 0) / 1024 / 1024 / 1024).toFixed(2)
+    },
+    totalDormExternalUploadUsageRatio () {
+      return this.totalDormExternalUploadUsage / 3 * 100
+    },
     series () {
-      if (!this.dormNetflowUsageSet) return [{ name: '', data: [] }]
+      if (!this.dormNetflowUsageEnabled || !this.dormNetflowUsageSet) {
+        return [{ name: '', data: this.noDataPlacehold }]
+      }
       return [{
         name: '校外上傳',
         data: this.dormNetflowUsageSet.map(d => ({ x: d.time, y: d.externalUpload }))
@@ -88,28 +112,64 @@ export default {
         name: '校內上傳',
         data: this.dormNetflowUsageSet.map(d => ({ x: d.time, y: d.totalUpload - d.externalUpload }))
       }]
+    },
+    chartOptions () {
+      return {
+        chart: {
+          stacked: true,
+          zoom: { enabled: false }
+        },
+        grid: { padding: { top: -20 } },
+        xaxis: {
+          type: this.dormNetflowUsageEnabled ? 'datetime' : 'numeric',
+          labels: {
+            show: this.dormNetflowUsageEnabled,
+            style: { colors: (this.theme === 'dark' ? '#F3F3F3' : undefined) }
+          }
+        },
+        yaxis: {
+          labels: {
+            show: this.dormNetflowUsageEnabled,
+            formatter: value => (value / 1024 / 1024).toFixed(2) + 'MB',
+            style: { color: (this.theme === 'dark' ? '#F3F3F3' : undefined) }
+          }
+        },
+        legend: { labels: { color: (this.theme === 'dark' ? '#F3F3F3' : undefined) } },
+        dataLabels: { enabled: false },
+        tooltip: {
+          enabled: this.dormNetflowUsageEnabled,
+          shared: true,
+          x: { format: 'MMM dd HH:mm' },
+          theme: this.theme
+        },
+        colors: ['#FBC02D', '#F57F17'],
+        states: {
+          hover: { filter: { type: this.dormNetflowUsageEnabled ? 'lighten' : 'none' } },
+          active: { filter: { type: this.dormNetflowUsageEnabled ? 'lighten' : 'none' } }
+        }
+      }
     }
   },
   methods: {
-    updateTheme () {
-      chrome.storage.sync.get('theme', results => {
-        this.dark = (results.theme === 'dark')
-      })
-    },
-    updateDormIpAddress () {
-      chrome.storage.sync.get('dormIpAddress', results => {
+    initialize () {
+      chrome.storage.sync.get(results => {
+        this.theme = results.theme
         this.dormIpAddress = results.dormIpAddress
+        this.dormNetflowUsageEnabled = results['dorm-netflow']
+        if (!this.dormNetflowUsageEnabled) this.displayNoData()
       })
     },
     updateDormNetflowUsageSet () {
       chrome.storage.local.get('dormNetflowUsageSet', results => {
         this.dormNetflowUsageSet = results.dormNetflowUsageSet
       })
+    },
+    displayNoData () {
+      this.noDataPlacehold = [1, 2, 3, 4]
     }
   },
   created () {
-    this.updateTheme()
-    this.updateDormIpAddress()
+    this.initialize()
     this.updateDormNetflowUsageSet()
   }
 }
