@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app :dark="dark">
     <v-toolbar app dense>
       <img src="@/assets/logo.png" alt="NCU Helper" class="logo ma-1">
       <v-toolbar-title>NCU Helper</v-toolbar-title>
@@ -25,6 +25,11 @@
     </v-toolbar>
     <v-content>
       <v-container fluid>
+        <v-layout row>
+          <v-subheader>宿舍上傳流量</v-subheader>
+          <v-spacer></v-spacer>
+          <span class="my-2"><code>{{ dormIpAddress }}</code></span>
+        </v-layout>
         <apexcharts
           type="bar"
           :options="chartOptions"
@@ -44,6 +49,7 @@ export default {
   },
   data () {
     return {
+      dark: false,
       menuItems: [{
         title: '計算 GPA',
         action: () => { open('https://portal.ncu.edu.tw/system/162') },
@@ -74,7 +80,7 @@ export default {
   },
   computed: {
     series () {
-      if (!this.dormNetflowUsageSet) return []
+      if (!this.dormNetflowUsageSet) return [{ name: '', data: [] }]
       return [{
         name: '校外上傳',
         data: this.dormNetflowUsageSet.map(d => ({ x: d.time, y: d.externalUpload }))
@@ -85,20 +91,25 @@ export default {
     }
   },
   methods: {
-    // LOAD FROM SYNC updateDormIpAddress () {
-    //   chrome.runtime.sendMessage({ name: 'getDormIpAddress' }, response => {
-    //     this.dormIpAddress = response
-    //   })
-    // },
+    updateTheme () {
+      chrome.storage.sync.get('theme', results => {
+        this.dark = (results.theme === 'dark')
+      })
+    },
+    updateDormIpAddress () {
+      chrome.storage.sync.get('dormIpAddress', results => {
+        this.dormIpAddress = results.dormIpAddress
+      })
+    },
     updateDormNetflowUsageSet () {
       chrome.storage.local.get('dormNetflowUsageSet', results => {
         this.dormNetflowUsageSet = results.dormNetflowUsageSet
-        console.log(this.dormNetflowUsageSet)
       })
     }
   },
   created () {
-    // this.updateDormIpAddress()
+    this.updateTheme()
+    this.updateDormIpAddress()
     this.updateDormNetflowUsageSet()
   }
 }

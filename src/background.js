@@ -1,16 +1,17 @@
 import moment from 'moment'
 
 const defaultOptions = {
+  'theme': 'dark',
   'portal': true,
   'lms': true,
   'score-inquiries': true,
   'gpa': true,
   'graduate': true,
   'dorm-netflow': false,
-  'dormIpAddress': '140.115.202.163' // XXX: testing
+  'dormIpAddress': undefined
 }
 
-// Set default settings.
+// Set default settings when first-time installation.
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get(results => {
     for (let [key, value] of Object.entries(defaultOptions)) {
@@ -22,9 +23,9 @@ chrome.runtime.onInstalled.addListener(() => {
 /* Dorm Netflow */
 let dormIpAddress
 
-// Initialize the update alarms.
-chrome.storage.sync.get('dormIpAddress', result => {
-  dormIpAddress = result.dormIpAddress
+// Initialize the updating alarms.
+chrome.storage.sync.get('dormIpAddress', results => {
+  dormIpAddress = results.dormIpAddress
   updateDormNetflowUsage()
   chrome.alarms.create('updateDormNetflow', { periodInMinutes: 3 })
   chrome.alarms.onAlarm.addListener(_alarm => { updateDormNetflowUsage() })
@@ -34,8 +35,10 @@ chrome.storage.sync.get('dormIpAddress', result => {
 chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
   if (message.name === 'updateDormIpAddress') {
     dormIpAddress = message.dormIpAddress
-    updateDormNetflowUsage()
-    sendResponse(true)
+    if (dormIpAddress) {
+      updateDormNetflowUsage()
+      sendResponse(true)
+    } else sendResponse(false)
   }
 })
 
@@ -52,21 +55,24 @@ function updateDormNetflowUsage () {
     const xhr = new XMLHttpRequest()
     xhr.addEventListener('load', function () {
       if (this.status === 200) {
-        console.log('Dorm netflow info updated.')
         const table = this.responseXML.querySelector('table[border="1"][cellspacing="0"][cellpadding="5"]')
         table.querySelectorAll('tr[bgcolor="#ffffee"], tr[bgcolor="#eeeeee"]').forEach(tr => {
           const data = []
           tr.querySelectorAll('td').forEach((td, idx) => { data[idx] = td.innerText })
           ret.push({
-            time: moment(data[0]).toISOString(),
-            externalUpload: Number(data[1]),
-            externalDownload: Number(data[2]),
-            totalUpload: Number(data[3]),
-            totalDownload: Number(data[4])
+            // NOTE: the following `add` method is a workaround for apexchart issue:
+            // https://github.com/apexcharts/apexcharts.js/issues/110
+            time: moment(data[0]).add(8, 'hours').toString(),
+            externalUpload: data[1] * 1 || 0,
+            externalDownload: data[2] * 1 || 0,
+            totalUpload: data[3] * 1 || 0,
+            totalDownload: data[4] * 1 || 0
           })
         })
         ret.reverse()
-        chrome.storage.local.set({ dormNetflowUsageSet: ret })
+        chrome.storage.local.set({ dormNetflowUsageSet: ret }, () => {
+          console.log('Dorm netflow info updated.', dormIpAddress)
+        })
       }
     })
     xhr.open('post', url, true)
