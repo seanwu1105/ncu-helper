@@ -6,7 +6,7 @@
           <v-list subheader three-line>
             <v-subheader>深色外觀</v-subheader>
             <template v-for="option in skinOptions">
-              <v-list-tile @click=";" :key="option.title">
+              <v-list-tile @click=";" :key="option.key">
                 <v-list-tile-content @click.prevent="option.setting = !option.setting">
                   <v-list-tile-title>{{ option.title }}</v-list-tile-title>
                   <v-list-tile-sub-title>
@@ -33,7 +33,7 @@
                 <v-switch v-model="gpaCalculatorEnabled"></v-switch>
               </v-list-tile-action>
             </v-list-tile>
-            <v-dialog full-width v-model="dormNetflowUsage.dialog">
+            <v-dialog full-width persistent v-model="dormNetflowUsage.dialog">
               <v-list-tile slot="activator" @click=";" ripple>
                 <v-list-tile-content>
                   <v-list-tile-title>宿網流量監控</v-list-tile-title>
@@ -52,16 +52,32 @@
                     v-model="dormNetflowUsage.enabled"
                   ></v-switch>
                   啟用宿網流量監控工具。監控宿網流量並顯示剩餘上傳流量在彈跳視窗（popup），以方便使用者得知會不會超量使用（24 小時內上傳流量超過 3GB）導致計算機中心鎖卡。設定新 IP 位址後，需要等待至多 5 分鐘取得流量資訊。流量資訊僅供參考，實際資訊請至<a href="http://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow">中央大學學生宿舍網路系統查詢</a>。
+                  <v-divider class="my-4"></v-divider>
+                  <v-form v-model="dormNetflowUsage.valid">
+                    <v-layout row>
+                      <v-flex xs10>
+                        <v-text-field
+                          v-model="dormNetflowUsage.ipAddress"
+                          :disabled="!dormNetflowUsage.enabled"
+                          label="輸入目標 IP 位址"
+                          placeholder="中央大學宿舍網路 IP 位址"
+                          hint="For example, 140.115.202.163"
+                          :rules="[dormNetflowUsage.rule]"
+                          box
+                        ></v-text-field>
+                      </v-flex>
+                      <v-flex xs2>
+                        <v-btn
+                          flat
+                          color="secondary"
+                          class="mx-2"
+                          :disabled="dormNetflowUsage.enabled && !dormNetflowUsage.valid"
+                          @click.native="dormNetflowUsage.dialog = false"
+                        >確定</v-btn>
+                      </v-flex>
+                    </v-layout>
+                  </v-form>
                 </v-card-text>
-                <v-card-actions>
-                  <v-text-field
-                    label="目標 IP 位址"
-                    placeholder="中央大學宿舍網路 IP 位址"
-                    v-model="dormNetflowUsage.ipAddress"
-                    :disabled="!dormNetflowUsage.enabled"
-                  ></v-text-field>
-                  <v-btn flat color="secondary" class="mx-2">確定</v-btn>
-                </v-card-actions>
               </v-card>
             </v-dialog>
           </v-list>
@@ -125,9 +141,14 @@ export default {
       }],
       gpaCalculatorEnabled: true,
       dormNetflowUsage: {
-        dialog: false, // XXX: use this to detect use finish the setting (in order to set chrome.storage)
+        dialog: false,
         enabled: false,
-        ipAddress: ''
+        ipAddress: undefined,
+        valid: true,
+        rule (value) {
+          const pattern = /^140\.115\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)$/
+          return pattern.test(value) || '格式錯誤。IP 格式須為 "140.115.X.X"，X 介於 0 至 255。'
+        }
       },
       footerLinks: [{
         action () { open('https://chrome.google.com/webstore/detail/ncu-helper/khhogbhcofdjjccjhgganhkhokibnfnb') },
@@ -147,13 +168,26 @@ export default {
         tooltip: 'GitHub'
       }]
     }
+  },
+  methods: {
+    loadOptions () {
+      chrome.storage.sync.get(results => {
+        for (let option of this.skinOptions) option.setting = results[option.key]
+        this.gpaCalculatorEnabled = results.gpa
+        this.dormNetflowUsage.enabled = results['dorm-netflow']
+        this.dormNetflowUsage.ipAddress = results.dormIpAddress
+      })
+    }
+  },
+  created () {
+    this.loadOptions()
   }
 }
 </script>
 
 <style>
 html {
-  min-width: 600px;
+  min-width: 650px;
   overflow: auto;
 }
 body {
