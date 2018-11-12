@@ -1,14 +1,14 @@
 import moment from 'moment'
 
 const defaultOptions = {
-  'theme': 'dark',
+  'popupDarkTheme': true,
   'portal': true,
   'lms': true,
   'score-inquiries': true,
   'gpa': true,
   'graduate': true,
   'dorm-netflow': false, // is dorm-netflow usage enabled
-  'dormIpAddress': undefined
+  'dormIpAddress': undefined // use this name for backward compatibility
 }
 
 // Set default settings when first-time installation.
@@ -21,24 +21,26 @@ chrome.runtime.onInstalled.addListener(() => {
 })
 
 /* Dorm Netflow */
-let dormIpAddress
+let dormNetflowUsage = {
+  enabled: undefined,
+  ipAddress: undefined
+}
 
 // Initialize the updating alarms.
-chrome.storage.sync.get('dormIpAddress', results => {
-  dormIpAddress = results.dormIpAddress
+chrome.storage.sync.get(['dorm-netflow', 'dormIpAddress'], results => {
+  dormNetflowUsage.enabled = results['dorm-netflow']
+  dormNetflowUsage.ipAddress = results.dormIpAddress
   updateDormNetflowUsage()
   chrome.alarms.create('updateDormNetflow', { periodInMinutes: 3 })
   chrome.alarms.onAlarm.addListener(_alarm => { updateDormNetflowUsage() })
 })
 
 // Initialize message listeners.
-chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
+chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.name === 'updateDormIpAddress') {
-    dormIpAddress = message.dormIpAddress
-    if (dormIpAddress) {
-      updateDormNetflowUsage()
-      sendResponse(true)
-    } else sendResponse(false)
+    dormNetflowUsage.enabled = message.dormNetflowUsageEnabled
+    dormNetflowUsage.ipAddress = message.dormNetflowUsageIp
+    updateDormNetflowUsage()
   }
 })
 
@@ -49,7 +51,7 @@ chrome.runtime.onMessage.addListener((message, _sender, sendResponse) => {
  * @param {string} ipAddress The target ip address.
  */
 function updateDormNetflowUsage () {
-  if (dormIpAddress) {
+  if (dormNetflowUsage.enabled && dormNetflowUsage.ipAddress) {
     const ret = []
     const url = 'https://uncia.cc.ncu.edu.tw/dormnet/index.php'
     const xhr = new XMLHttpRequest()
@@ -71,13 +73,13 @@ function updateDormNetflowUsage () {
         })
         ret.reverse()
         chrome.storage.local.set({ dormNetflowUsageSet: ret }, () => {
-          console.log('Dorm netflow info updated.', dormIpAddress)
+          console.log('Dorm netflow info updated.', dormNetflowUsage.ipAddress)
         })
       }
     })
     xhr.open('post', url, true)
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.responseType = 'document'
-    xhr.send(`section=netflow&ip=${dormIpAddress}`)
+    xhr.send(`section=netflow&ip=${dormNetflowUsage.ipAddress}`)
   }
 }

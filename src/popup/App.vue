@@ -1,5 +1,5 @@
 <template>
-  <v-app :dark="dark">
+  <v-app :dark="darkTheme">
     <v-toolbar app dense>
       <img src="@/assets/logo.png" alt="NCU Helper" class="logo ma-1">
       <v-toolbar-title>NCU Helper</v-toolbar-title>
@@ -76,7 +76,7 @@ export default {
   },
   data () {
     return {
-      theme: 'dark',
+      darkTheme: 'dark',
       menuItems: [{
         title: '計算 GPA',
         action () { open('https://portal.ncu.edu.tw/system/162') },
@@ -100,7 +100,6 @@ export default {
     }
   },
   computed: {
-    dark () { return (this.theme === 'dark') },
     totalDormExternalUploadUsage () {
       if (!this.dormNetflowUsageEnabled) {
         return (this.noDataPlaceholder.reduce((a, b) => a + b, 0) / this.noDataPlaceholderSampleNum).toFixed(2)
@@ -129,29 +128,30 @@ export default {
         chart: {
           stacked: true,
           zoom: { enabled: false },
-          animations: { easing: 'linear' }
+          animations: { easing: 'linear' },
+          toolbar: { show: false }
         },
         grid: { padding: { top: -20 } },
         xaxis: {
           type: this.dormNetflowUsageEnabled ? 'datetime' : 'numeric',
           labels: {
             show: this.dormNetflowUsageEnabled,
-            style: { colors: (this.theme === 'dark' ? '#F3F3F3' : undefined) }
+            style: { colors: (this.darkTheme ? '#F3F3F3' : undefined) }
           }
         },
         yaxis: {
           labels: {
             show: this.dormNetflowUsageEnabled,
             formatter: value => (value / 1024 / 1024).toFixed(2) + 'MB',
-            style: { color: (this.theme === 'dark' ? '#F3F3F3' : undefined) }
+            style: { color: (this.darkTheme === 'dark' ? '#F3F3F3' : undefined) }
           }
         },
-        legend: { labels: { color: (this.theme === 'dark' ? '#F3F3F3' : undefined) } },
+        legend: { labels: { color: (this.darkTheme === 'dark' ? '#F3F3F3' : undefined) } },
         dataLabels: { enabled: false },
         tooltip: {
           enabled: this.dormNetflowUsageEnabled,
           x: { format: 'MMM dd HH:mm' },
-          theme: this.theme
+          theme: this.darkTheme ? 'dark' : 'light'
         },
         colors: ['#FBC02D', '#F57F17'],
         states: {
@@ -164,7 +164,7 @@ export default {
   methods: {
     initialize () {
       chrome.storage.sync.get(results => {
-        this.theme = results.theme
+        this.darkTheme = results.popupDarkTheme
         this.dormIpAddress = results.dormIpAddress
         this.dormNetflowUsageEnabled = results['dorm-netflow']
         if (!this.dormNetflowUsageEnabled) {

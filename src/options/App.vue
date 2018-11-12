@@ -5,34 +5,24 @@
         <v-flex xs12>
           <v-list subheader three-line>
             <v-subheader>深色外觀</v-subheader>
-            <template v-for="option in skinOptions">
-              <v-list-tile @click=";" :key="option.key">
-                <v-list-tile-content @click.prevent="option.setting = !option.setting">
-                  <v-list-tile-title>{{ option.title }}</v-list-tile-title>
-                  <v-list-tile-sub-title>
-                    {{ option.subtitle }}此效果會套用至<code>{{ option.match }}</code>等網頁。
-                  </v-list-tile-sub-title>
-                </v-list-tile-content>
-                <v-list-tile-action>
-                  <v-switch v-model="option.setting"></v-switch>
-                </v-list-tile-action>
-              </v-list-tile>
-            </template>
+            <switch-option
+              v-for="option in skinOptions"
+              :key="option.key"
+              :title="option.title"
+              :storage-key="option.key"
+            >
+              {{ option.subtitle }}此效果會套用至<code>{{ option.match }}</code>等網頁。
+            </switch-option>
           </v-list>
 
           <v-list subheader three-line>
             <v-subheader>功能設定</v-subheader>
-            <v-list-tile @click=";">
-              <v-list-tile-content @click.prevent="gpaCalculatorEnabled = !gpaCalculatorEnabled">
-                <v-list-tile-title>GPA 計算工具</v-list-tile-title>
-                <v-list-tile-sub-title>
-                  於國立中央大學教務系統啟用 GPA 計算工具。所有計算皆在本地端運行，不會上傳任何個人資料。計算後成績僅供參考。
-                </v-list-tile-sub-title>
-              </v-list-tile-content>
-              <v-list-tile-action>
-                <v-switch v-model="gpaCalculatorEnabled"></v-switch>
-              </v-list-tile-action>
-            </v-list-tile>
+            <switch-option
+              title="GPA 計算工具"
+              storage-key="gpa"
+            >
+              於國立中央大學教務系統啟用 GPA 計算工具。所有計算皆在本地端運行，不會上傳任何個人資料。計算後成績僅供參考。
+            </switch-option>
             <v-dialog full-width persistent v-model="dormNetflowUsage.dialog">
               <v-list-tile slot="activator" @click=";" ripple>
                 <v-list-tile-content>
@@ -72,7 +62,7 @@
                           color="secondary"
                           class="mx-2"
                           :disabled="dormNetflowUsage.enabled && !dormNetflowUsage.valid"
-                          @click.native="dormNetflowUsage.dialog = false"
+                          @click.native="saveDormNetflowUsageOptions"
                         >確定</v-btn>
                       </v-flex>
                     </v-layout>
@@ -105,41 +95,40 @@
 </template>
 
 <script>
+import SwitchOption from '../components/SwitchOption'
+
 export default {
+  components: {
+    SwitchOption
+  },
   data () {
     return {
       skinOptions: [{
         title: '彈跳視窗（popup）深色外觀',
         subtitle: '對 NCU Helper 的彈跳視窗套用深色外觀。',
         match: 'popup/popup.html',
-        setting: true,
-        key: 'theme'
+        key: 'popupDarkTheme'
       }, {
         title: 'Portal 深色外觀',
         subtitle: '對 NCU Portal 入口網站部份網頁套用深色外觀。',
         match: 'https://portal.ncu.edu.tw/',
-        setting: true,
         key: 'portal'
       }, {
         title: 'LMS 深色外觀',
         subtitle: '對 NCN Learning Management System 網頁套用深色外觀。',
         match: 'https://lms.ncu.edu.tw/*',
-        setting: true,
         key: 'lms'
       }, {
         title: '成績查詢系統深色外觀',
         subtitle: '對國立中央大學教務系統套用深色外觀。',
         match: 'https://cis.ncu.edu.tw/ScoreInquiries/*',
-        setting: true,
         key: 'score-inquiries'
       }, {
         title: '畢審系統深色外觀',
         subtitle: '對中大畢審系統查詢網頁套用深色外觀。',
         match: 'https://cis.ncu.edu.tw/grad/index.php*',
-        setting: true,
         key: 'graduate'
       }],
-      gpaCalculatorEnabled: true,
       dormNetflowUsage: {
         dialog: false,
         enabled: false,
@@ -170,17 +159,25 @@ export default {
     }
   },
   methods: {
-    loadOptions () {
-      chrome.storage.sync.get(results => {
-        for (let option of this.skinOptions) option.setting = results[option.key]
-        this.gpaCalculatorEnabled = results.gpa
-        this.dormNetflowUsage.enabled = results['dorm-netflow']
-        this.dormNetflowUsage.ipAddress = results.dormIpAddress
+    saveDormNetflowUsageOptions () {
+      console.log(this.dormNetflowUsage)
+      chrome.runtime.sendMessage({
+        name: 'updateDormIpAddress',
+        dormNetflowUsageEnabled: this.dormNetflowUsage.enabled,
+        dormNetflowUsageIp: this.dormNetflowUsage.ipAddress
       })
+      chrome.storage.sync.set({
+        'dorm-netflow': this.dormNetflowUsage.enabled,
+        dormIpAddress: this.dormNetflowUsage.ipAddress
+      })
+      this.dormNetflowUsage.dialog = false
     }
   },
   created () {
-    this.loadOptions()
+    chrome.storage.sync.get(results => {
+      this.dormNetflowUsage.enabled = results['dorm-netflow']
+      this.dormNetflowUsage.ipAddress = results.dormIpAddress
+    })
   }
 }
 </script>
