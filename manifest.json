@@ -13,7 +13,7 @@
             "lib/moment.js",
             "scripts/background.js"
         ],
-        "persistent": true
+        "persistent": false
     },
     "options_page": "html/options.html",
     "browser_action": {
@@ -72,8 +72,6 @@
     ],
     "permissions": [
         "tabs",
-        "webRequest",
-        "webRequestBlocking",
         "storage",
         "alarms"
     ],

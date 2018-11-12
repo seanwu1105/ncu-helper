@@ -644,88 +644,88 @@ li.ccQItem.logout>a::before {
 
 li.ccQItem.account>a::before {
     background-size: 22px;
-    background-image: url(/i/32g/profile.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/profile.png);
 }
 
 li.ccQItem.logout>a::before {
     background-size: 22px;
-    background-image: url(/i/32g/logout.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/logout.png);
 }
 
 .ptool A.pcalendar::after {
-    background-image: url(i/24/calendar.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/calendar.png);
 }
 
 .ptool A.ptasks::after {
-    background-image: url(i/24/tasks.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/tasks.png);
 }
 
 .ptool A.pcontacts::after {
-    background-image: url(i/24/contacts.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/contacts.png);
 }
 
 .ptool A.pfiles::after {
-    background-image: url(i/24/files.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/files.png);
 }
 
 .ptool A.pwebpages::after {
-    background-image: url(i/24/webpages.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/webpages.png);
 }
 
 .ptool A.pbookmark::after {
-    background-image: url(i/24/bookmark.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/bookmark.png);
 }
 
 .ptool A.palbums::after {
-    background-image: url(i/24/albums.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/albums.png);
 }
 
 .ptool A.pblogs::after {
-    background-image: url(i/24/blogs.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/blogs.png);
 }
 
 .ptool A.ppreferences::after {
-    background-image: url(i/24/preferences.png);
+    background-image: url(https://lms.ncu.edu.tw/i/24/preferences.png);
 }
 
 .ptool A.peportfolio::after {
-    background-image: url(i/32g/studentEPortfolio.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/studentEPortfolio.png);
 }
 
 li#ccSCS22\.0-23\.0_1>div>a[style]::before {
-    background-image: url(/i/32g/fullMenu.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/fullMenu.png);
 }
 
 li#ccSCS22\.0-23\.0_2>div>a[style]::before {
-    background-image: url(/i/32g/home.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/home.png);
 }
 
 li#ccSCS22\.0-23\.0_5>div>a[style]::before {
-    background-image: url(/i/32g/announcements.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/announcements.png);
 }
 
 li#ccSCS22\.0-23\.0_55>div>a[style]::before {
-    background-image: url(/i/32g/studentTools.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/studentTools.png);
 }
 
 li#ccSCS22\.0-23\.0_14>div>a[style]::before {
-    background-image: url(/i/32g/syllabus.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/syllabus.png);
 }
 
 li#ccSCS22\.0-23\.0_13>div>a[style]::before {
-    background-image: url(/i/32g/sharedFiles.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/sharedFiles.png);
 }
 
 li#ccSCS22\.0-23\.0_7>div>a[style]::before {
-    background-image: url(/i/32g/calendar.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/calendar.png);
 }
 
 li#ccSCS22\.0-23\.0_11>div>a[style]::before {
-    background-image: url(/i/32g/messageBoard.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/messageBoard.png);
 }
 
 li#ccSCS22\.0-23\.0_56>div>a[style]::before {
-    background-image: url(/i/32g/blog.png);
+    background-image: url(https://lms.ncu.edu.tw/i/32g/blog.png);
 }
 
 .ccQList>li.ccQItem.email::before,
@@ -743,31 +743,31 @@ li#ccSCS22\.0-23\.0_56>div>a[style]::before {
 }
 
 .ccQList>li.ccQItem.email::before {
-    content: url(/i/32g/email.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/email.png);
 }
 .ccQList>LI.ccQItem.calendar::before {
-    content: url(/i/32g/calendar.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/calendar.png);
 }
 .ccQList>LI.ccQItem.tasks::before {
-    content: url(/i/32g/tasks.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/tasks.png);
 }
 .ccQList>LI.ccQItem.contacts::before {
-    content: url(/i/32g/contacts.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/contacts.png);
 }
 .ccQList>LI.ccQItem.files::before {
-    content: url(/i/32g/files.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/files.png);
 }
 .ccQList>LI.ccQItem.webpages::before {
-    content: url(/i/32g/webpages.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/webpages.png);
 }
 .ccQList>LI.ccQItem.bookmark::before {
-    content: url(/i/32g/bookmarks.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/bookmarks.png);
 }
 .ccQList>LI.ccQItem.albums::before {
-    content: url(/i/32g/photoAlbums.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/photoAlbums.png);
 }
 .ccQList>LI.ccQItem.blogs::before {
-    content: url(/i/32g/blog.png);
+    content: url(https://lms.ncu.edu.tw/i/32g/blog.png);
 }
 
 li[id^="R22\."]::before,
@@ -779,7 +779,7 @@ li[id^="F22\."]::before {
     position: absolute;
     filter: brightness(0) invert(1);
     background-size: 16px;
-    background: url(/img/list_dot.gif) no-repeat left !important;
+    background: url(https://lms.ncu.edu.tw/img/list_dot.gif) no-repeat left !important;
 }
 
 #ccNavShortcut .ccSCCollapse::after,
@@ -789,7 +789,7 @@ li[id^="F22\."]::before {
     width: 24px;
     height: 24px;
     filter: contrast(110%) invert(80%) brightness(150%);
-    background: url(/img/qp/arrowLeft.png) no-repeat !important;
+    background: url(https://lms.ncu.edu.tw/img/qp/arrowLeft.png) no-repeat !important;
 }
 
 .icon-msg::after,
@@ -802,11 +802,11 @@ li[id^="F22\."]::before {
 }
 
 .icon-msg::after {
-    background: url(i/icon-msg.png) no-repeat;
+    background: url(https://lms.ncu.edu.tw/i/icon-msg.png) no-repeat;
 }
 
 .ccStudent::after {
-    background: url(/i/student.png) no-repeat;
+    background: url(https://lms.ncu.edu.tw/i/student.png) no-repeat;
 }
 
 div.ccSCGroupInd>a[style]::after {
