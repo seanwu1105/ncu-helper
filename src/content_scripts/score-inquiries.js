@@ -1,14 +1,16 @@
 import { insertCSS } from './common'
 
-(function () {
-  let use = true
-  if (use) insertCSS(chrome.runtime.getURL('stylesheets/score-inquiries.css'))
-  let gpa = true
-  if (gpa) {
-    insertCSS(chrome.runtime.getURL('stylesheets/gpa.css'))
-    document.addEventListener('DOMContentLoaded', () => { buildGpaCalculator() })
+chrome.storage.sync.get(['scoreInquiriesSkin', 'gpaCalculator'], results => {
+  if (results.scoreInquiriesSkin) {
+    insertCSS(chrome.runtime.getURL('stylesheets/score-inquiries.css'))
   }
-})()
+  if (results.gpaCalculator) {
+    insertCSS(chrome.runtime.getURL('stylesheets/gpa.css'))
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', buildGpaCalculator)
+    } else buildGpaCalculator()
+  }
+})
 
 /**
  * Build the GPA calculator and append it in the bottom of the page.

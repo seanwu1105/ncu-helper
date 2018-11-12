@@ -7,9 +7,9 @@
             <v-subheader>深色外觀</v-subheader>
             <switch-option
               v-for="option in skinOptions"
-              :key="option.key"
+              :key="option.storageKey"
               :title="option.title"
-              :storage-key="option.key"
+              :storage-key="option.storageKey"
             >
               {{ option.subtitle }}此效果會套用至<code>{{ option.match }}</code>等網頁。
             </switch-option>
@@ -19,16 +19,16 @@
             <v-subheader>功能設定</v-subheader>
             <switch-option
               title="GPA 計算工具"
-              storage-key="gpa"
+              storage-key="gpaCalculator"
             >
               於國立中央大學教務系統啟用 GPA 計算工具。所有計算皆在本地端運行，不會上傳任何個人資料。計算後成績僅供參考。
             </switch-option>
-            <v-dialog full-width persistent v-model="dormNetflowUsage.dialog">
+            <v-dialog full-width persistent v-model="dormNetflow.dialog">
               <v-list-tile slot="activator" @click=";" ripple>
                 <v-list-tile-content>
                   <v-list-tile-title>宿網流量監控</v-list-tile-title>
                   <v-list-tile-sub-title>
-                    設定剩餘宿舍網路上傳流量顯示器。目前設定：<code>{{ dormNetflowUsage.enabled ? dormNetflowUsage.ipAddress : '未啟用' }}</code>。
+                    設定剩餘宿舍網路上傳流量顯示器。目前設定：<code>{{ dormNetflow.enabled ? dormNetflow.ip : '未啟用' }}</code>。
                   </v-list-tile-sub-title>
                 </v-list-tile-content>
               </v-list-tile>
@@ -38,21 +38,21 @@
                 </v-card-title>
                 <v-card-text>
                   <v-switch
-                    :label="dormNetflowUsage.enabled ? '啟用' : '未啟用'"
-                    v-model="dormNetflowUsage.enabled"
+                    :label="dormNetflow.enabled ? '啟用' : '未啟用'"
+                    v-model="dormNetflow.enabled"
                   ></v-switch>
                   啟用宿網流量監控工具。監控宿網流量並顯示剩餘上傳流量在彈跳視窗（popup），以方便使用者得知會不會超量使用（24 小時內上傳流量超過 3GB）導致計算機中心鎖卡。設定新 IP 位址後，需要等待至多 5 分鐘取得流量資訊。流量資訊僅供參考，實際資訊請至<a href="http://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow">中央大學學生宿舍網路系統查詢</a>。
                   <v-divider class="my-4"></v-divider>
-                  <v-form v-model="dormNetflowUsage.valid">
+                  <v-form v-model="dormNetflow.valid">
                     <v-layout row>
                       <v-flex xs10>
                         <v-text-field
-                          v-model="dormNetflowUsage.ipAddress"
-                          :disabled="!dormNetflowUsage.enabled"
+                          v-model="dormNetflow.ip"
+                          :disabled="!dormNetflow.enabled"
                           label="輸入目標 IP 位址"
                           placeholder="中央大學宿舍網路 IP 位址"
                           hint="For example, 140.115.202.163"
-                          :rules="[dormNetflowUsage.rule]"
+                          :rules="[dormNetflow.rule]"
                           box
                         ></v-text-field>
                       </v-flex>
@@ -61,8 +61,8 @@
                           flat
                           color="secondary"
                           class="mx-2"
-                          :disabled="dormNetflowUsage.enabled && !dormNetflowUsage.valid"
-                          @click.native="saveDormNetflowUsageOptions"
+                          :disabled="dormNetflow.enabled && !dormNetflow.valid"
+                          @click.native="saveDormNetflow"
                         >確定</v-btn>
                       </v-flex>
                     </v-layout>
@@ -107,32 +107,32 @@ export default {
         title: '彈跳視窗（popup）深色外觀',
         subtitle: '對 NCU Helper 的彈跳視窗套用深色外觀。',
         match: 'popup/popup.html',
-        key: 'popupDarkTheme'
+        storageKey: 'popupDarkTheme'
       }, {
         title: 'Portal 深色外觀',
         subtitle: '對 NCU Portal 入口網站部份網頁套用深色外觀。',
         match: 'https://portal.ncu.edu.tw/',
-        key: 'portal'
+        storageKey: 'portalSkin'
       }, {
         title: 'LMS 深色外觀',
         subtitle: '對 NCN Learning Management System 網頁套用深色外觀。',
         match: 'https://lms.ncu.edu.tw/*',
-        key: 'lms'
+        storageKey: 'lmsSkin'
       }, {
         title: '成績查詢系統深色外觀',
         subtitle: '對國立中央大學教務系統套用深色外觀。',
         match: 'https://cis.ncu.edu.tw/ScoreInquiries/*',
-        key: 'score-inquiries'
+        storageKey: 'scoreInquiriesSkin'
       }, {
         title: '畢審系統深色外觀',
         subtitle: '對中大畢審系統查詢網頁套用深色外觀。',
         match: 'https://cis.ncu.edu.tw/grad/index.php*',
-        key: 'graduate'
+        storageKey: 'graduateSkin'
       }],
-      dormNetflowUsage: {
+      dormNetflow: {
         dialog: false,
         enabled: false,
-        ipAddress: undefined,
+        ip: undefined,
         valid: true,
         rule (value) {
           const pattern = /^140\.115\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)\.(0|1([0-9][0-9]?)?|2([5-9]|[0-4][0-9]?|5[0-5]?)?|[3-9][0-9]?)$/
@@ -159,24 +159,24 @@ export default {
     }
   },
   methods: {
-    saveDormNetflowUsageOptions () {
-      console.log(this.dormNetflowUsage)
+    saveDormNetflow () {
       chrome.runtime.sendMessage({
         name: 'updateDormNetflow',
-        enabled: this.dormNetflowUsage.enabled,
-        ip: this.dormNetflowUsage.ipAddress
+        enabled: this.dormNetflow.enabled,
+        ip: this.dormNetflow.ip
       })
       chrome.storage.sync.set({
-        'dorm-netflow': this.dormNetflowUsage.enabled,
-        dormIpAddress: this.dormNetflowUsage.ipAddress
+        dormNetflow: {
+          enabled: this.dormNetflow.enabled,
+          ip: this.dormNetflow.ip
+        }
       })
-      this.dormNetflowUsage.dialog = false
+      this.dormNetflow.dialog = false
     }
   },
   created () {
     chrome.storage.sync.get(results => {
-      this.dormNetflowUsage.enabled = results['dorm-netflow']
-      this.dormNetflowUsage.ipAddress = results.dormIpAddress
+      this.dormNetflow = Object.assign(this.dormNetflow, results.dormNetflow)
     })
   }
 }

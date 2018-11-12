@@ -1,25 +1,16 @@
 import moment from 'moment'
 
 const defaultOptions = {
-  'popupDarkTheme': true,
-  'portalSkin': true,
-  'lmsSkin': true,
-  'scoreInquiriesSkin': true,
-  'graduateSkin': true,
-  'gpaCalculator': true,
-  'dormNetflowEnabled': false,
-  'dormNetflowIp': undefined
-}
-
-/* XXX: for backward compatability. */
-const oldNewOptionKeysConversion = {
-  'portal': 'portalSkin',
-  'lms': 'lmsSkin',
-  'score-inquiries': 'scoreInquiriesSkin',
-  'graduate': 'graduateSkin',
-  'gpa': 'gpaCalculator',
-  'dorm-netflow': 'dormNetflowEnabled',
-  'dormIpAddress': 'dormNetflowIp'
+  popupDarkTheme: true,
+  portalSkin: true,
+  lmsSkin: true,
+  scoreInquiriesSkin: true,
+  graduateSkin: true,
+  gpaCalculator: true,
+  dormNetflow: {
+    enabled: false,
+    ip: undefined
+  }
 }
 
 // Set default settings when installation, extension or chrome update.
@@ -34,27 +25,23 @@ chrome.runtime.onInstalled.addListener(() => {
 /* Dorm Netflow */
 
 // Initialize the updating alarms.
-chrome.storage.sync.get(['dorm-netflow', 'dormIpAddress'], results => {
-  updateDormNetflow({
-    enabled: results['dorm-netflow'],
-    ip: results.dormIpAddress
-  })
+chrome.storage.sync.get('dormNetflow', results => {
+  writeDormNetflowData(results.dormNetflow)
   chrome.alarms.create('updateDormNetflow', { periodInMinutes: 3 })
-  chrome.alarms.onAlarm.addListener(_alarm => { updateDormNetflow() })
+  chrome.alarms.onAlarm.addListener(_alarm => {
+    writeDormNetflowData(results.dormNetflow)
+  })
 })
 
 // Initialize message listeners.
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
   if (message.name === 'updateDormNetflow') {
-    updateDormNetflow({
-      enabled: message.enabled,
-      ip: message.ip
-    })
+    writeDormNetflowData(message)
   }
 })
 
-function updateDormNetflow (dormNetflow) {
-  if (dormNetflow.enabled && dormNetflow.ip) {
+function writeDormNetflowData (dormNetflow) {
+  if (dormNetflow && dormNetflow.enabled && dormNetflow.ip) {
     const ret = []
     const url = 'https://uncia.cc.ncu.edu.tw/dormnet/index.php'
     const xhr = new XMLHttpRequest()

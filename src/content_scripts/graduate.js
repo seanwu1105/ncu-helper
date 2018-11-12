@@ -1,6 +1,5 @@
 import { insertCSS } from './common'
 
-(function () {
-  let use = true
-  if (use) insertCSS(chrome.runtime.getURL('stylesheets/graduate.css'))
-})()
+chrome.storage.sync.get('graduateSkin', results => {
+  if (results.graduateSkin) insertCSS(chrome.runtime.getURL('stylesheets/graduate.css'))
+})
