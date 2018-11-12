@@ -29,6 +29,18 @@ chrome.runtime.onInstalled.addListener((details) => {
             chrome.storage.sync.set({'dorm-netflow': false});
         }
     });
+    chrome.storage.sync.get(results => {
+        chrome.storage.sync.set({
+            portalSkin: results['portal'],
+            lmsSkin: results['lms'],
+            scoreInquiriesSkin: results['score-inquiries'],
+            gpaCalculator: results['gpa'],
+            dormNetflow: {
+                enabled: results['dorm-netflow'],
+                ip: results['dormIpAddress']
+            },
+        })
+    })
 });
 
 chrome.storage.sync.get('dormIpAddress', (result) => {
