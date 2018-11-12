@@ -162,9 +162,9 @@ export default {
     saveDormNetflowUsageOptions () {
       console.log(this.dormNetflowUsage)
       chrome.runtime.sendMessage({
-        name: 'updateDormIpAddress',
-        dormNetflowUsageEnabled: this.dormNetflowUsage.enabled,
-        dormNetflowUsageIp: this.dormNetflowUsage.ipAddress
+        name: 'updateDormNetflow',
+        enabled: this.dormNetflowUsage.enabled,
+        ip: this.dormNetflowUsage.ipAddress
       })
       chrome.storage.sync.set({
         'dorm-netflow': this.dormNetflowUsage.enabled,

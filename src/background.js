@@ -2,16 +2,27 @@ import moment from 'moment'
 
 const defaultOptions = {
   'popupDarkTheme': true,
-  'portal': true,
-  'lms': true,
-  'score-inquiries': true,
-  'gpa': true,
-  'graduate': true,
-  'dorm-netflow': false, // is dorm-netflow usage enabled
-  'dormIpAddress': undefined // use this name for backward compatibility
+  'portalSkin': true,
+  'lmsSkin': true,
+  'scoreInquiriesSkin': true,
+  'graduateSkin': true,
+  'gpaCalculator': true,
+  'dormNetflowEnabled': false,
+  'dormNetflowIp': undefined
 }
 
-// Set default settings when first-time installation.
+/* XXX: for backward compatability. */
+const oldNewOptionKeysConversion = {
+  'portal': 'portalSkin',
+  'lms': 'lmsSkin',
+  'score-inquiries': 'scoreInquiriesSkin',
+  'graduate': 'graduateSkin',
+  'gpa': 'gpaCalculator',
+  'dorm-netflow': 'dormNetflowEnabled',
+  'dormIpAddress': 'dormNetflowIp'
+}
+
+// Set default settings when installation, extension or chrome update.
 chrome.runtime.onInstalled.addListener(() => {
   chrome.storage.sync.get(results => {
     for (let [key, value] of Object.entries(defaultOptions)) {
@@ -21,37 +32,29 @@ chrome.runtime.onInstalled.addListener(() => {
 })
 
 /* Dorm Netflow */
-let dormNetflowUsage = {
-  enabled: undefined,
-  ipAddress: undefined
-}
 
 // Initialize the updating alarms.
 chrome.storage.sync.get(['dorm-netflow', 'dormIpAddress'], results => {
-  dormNetflowUsage.enabled = results['dorm-netflow']
-  dormNetflowUsage.ipAddress = results.dormIpAddress
-  updateDormNetflowUsage()
+  updateDormNetflow({
+    enabled: results['dorm-netflow'],
+    ip: results.dormIpAddress
+  })
   chrome.alarms.create('updateDormNetflow', { periodInMinutes: 3 })
-  chrome.alarms.onAlarm.addListener(_alarm => { updateDormNetflowUsage() })
+  chrome.alarms.onAlarm.addListener(_alarm => { updateDormNetflow() })
 })
 
 // Initialize message listeners.
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
-  if (message.name === 'updateDormIpAddress') {
-    dormNetflowUsage.enabled = message.dormNetflowUsageEnabled
-    dormNetflowUsage.ipAddress = message.dormNetflowUsageIp
-    updateDormNetflowUsage()
+  if (message.name === 'updateDormNetflow') {
+    updateDormNetflow({
+      enabled: message.enabled,
+      ip: message.ip
+    })
   }
 })
 
-/**
- * Send post request to `uncia.cc.ncu.edu.tw/dormnet` and get the 24 hrs dorm
- * net flow usage statistics. And save the result in netflowUsage of local
- * storage.
- * @param {string} ipAddress The target ip address.
- */
-function updateDormNetflowUsage () {
-  if (dormNetflowUsage.enabled && dormNetflowUsage.ipAddress) {
+function updateDormNetflow (dormNetflow) {
+  if (dormNetflow.enabled && dormNetflow.ip) {
     const ret = []
     const url = 'https://uncia.cc.ncu.edu.tw/dormnet/index.php'
     const xhr = new XMLHttpRequest()
@@ -72,14 +75,14 @@ function updateDormNetflowUsage () {
           })
         })
         ret.reverse()
-        chrome.storage.local.set({ dormNetflowUsageSet: ret }, () => {
-          console.log('Dorm netflow info updated.', dormNetflowUsage.ipAddress)
+        chrome.storage.local.set({ dormNetflowData: ret }, () => {
+          console.log('Dorm netflow info updated.', dormNetflow.ip)
         })
       }
     })
     xhr.open('post', url, true)
     xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
     xhr.responseType = 'document'
-    xhr.send(`section=netflow&ip=${dormNetflowUsage.ipAddress}`)
+    xhr.send(`section=netflow&ip=${dormNetflow.ip}`)
   }
 }
