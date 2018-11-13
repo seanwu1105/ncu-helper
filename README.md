@@ -7,12 +7,11 @@
 
 Add some features and change the design of NCU web pages in a more modern style.
 
-![Portal](https://i.imgur.com/eUBvdGJ.png)
-![LMS 1](https://i.imgur.com/m8mPeDm.png)
-![LMS 2](https://i.imgur.com/loFFgbD.png)
-![Score Inquiries](https://i.imgur.com/1NIVysp.png)
+![wallpaper](https://i.imgur.com/YJOgTIK.png)
 
-> All calculation is running in **local** browser.
+## Installing
+
+[![extension](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://goo.gl/YM69cw)
 
 ## Features
 
@@ -33,6 +32,8 @@ Add some features and change the design of NCU web pages in a more modern style.
 
 ![GPA Calculation](https://i.imgur.com/QcwunE7.gif)
 
+> All calculation is running in **local** browser.
+
 #### NCU (4.0)
 
 | Score | 100-80 | 79-70 | 69-60 | 59-1 | 0 |
@@ -49,37 +50,27 @@ Add some features and change the design of NCU web pages in a more modern style.
 
 ### Dorm Netflow Monitoring
 
-![Dorm Netflow](https://i.imgur.com/gh9Cxue.gif)
-
-#### Setup the IP Address
-
-Go to settings and set the target NCU dorm IP address.
-![Dorm Netflow Setting](https://i.imgur.com/SOSOTUG.png)
+![Dorm Netflow](https://i.imgur.com/nqkrA97.png)
 
 The net flow data source is: <https://uncia.cc.ncu.edu.tw/dormnet/index.php?section=netflow>
 
 > The extension will **NOT** automatically upload your IP address which is stored locally in your chrome.
 
-## Installation
-
-Install in Chrome Extension website: <https://goo.gl/YM69cw>
-
-## Motivation
-
-Some layouts of NCU website are rather ugly and dazzling. Also, calculating GPA
-by hands is slow and dumb.
-
 ## Support
 
 Current only support Google Chrome.
 
-## Project Setup
+## Developing
+
+### Setting up Dev
 
 ``` bash
+git clone git@github.com:GLaDOS1105/ncu-helper.git
+cd ncu-helper
 npm install
 ```
 
-### Compiles and Hot-Reloads for Development
+### Compiles with Hot-Reload for Development
 
 ``` bash
 npm run serve
@@ -91,14 +82,12 @@ npm run serve
 npm run build
 ```
 
-### Run Your Tests
-
-``` bash
-npm run test
-```
-
 ### Lints and Fixes Files
 
 ``` bash
 npm run lint
 ```
+
+### Tests
+
+> Currently we do not have unit tests.
