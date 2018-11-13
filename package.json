@@ -1,12 +1,7 @@
 {
   "name": "ncu-helper",
-<<<<<<< HEAD
-  "version": "2.1.5",
-  "description": "Add some features and change the design of NCU webpages into mroe modern style.",
-=======
   "version": "3.0.0",
   "private": true,
->>>>>>> update/vuetify-reconstruct
   "scripts": {
     "serve": "vue-cli-service build --mode development --watch",
     "build": "vue-cli-service build",
