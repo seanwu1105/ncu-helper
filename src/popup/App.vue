@@ -57,7 +57,7 @@
           </v-flex>
           <v-flex xs12>
             <apexcharts
-              type="bar"
+              type="area"
               :options="chartOptions"
               :series="series"
             ></apexcharts>
@@ -147,6 +147,7 @@ export default {
           animations: { easing: 'linear' },
           toolbar: { show: false }
         },
+        stroke: { width: 1 },
         grid: { padding: { top: -20 } },
         xaxis: {
           type: this.dormNetflow.enabled ? 'datetime' : 'numeric',

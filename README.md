@@ -90,4 +90,4 @@ npm run lint
 
 ### Tests
 
-> Currently we do not have unit tests.
+> Currently, we do not have unit tests. PR is welcome.
