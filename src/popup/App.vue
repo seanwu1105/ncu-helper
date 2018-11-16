@@ -57,7 +57,7 @@
           </v-flex>
           <v-flex xs12>
             <apexcharts
-              type="area"
+              :type="dormNetflow.enabled ? 'area' : 'bar'"
               :options="chartOptions"
               :series="series"
             ></apexcharts>
