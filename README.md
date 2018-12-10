@@ -15,9 +15,11 @@ Add some features and change the design of NCU web pages in a more modern style.
 
 ## Features
 
+> All features are available in **Traditional Chinese** only.
+
 1. Beautify LMS (Learning Management System)
 2. Beautify NCU Portal Login Page
-3. Beautify NCU CIS Score Inquiries web pages and Automatically Calculate GPA (zhTW only)
+3. Beautify NCU CIS Score Inquiries web pages and Automatically Calculate GPA
 4. Beautify NCU CIS Graduation Check List
 5. Dorm Netflow Upload Stream Monitoring (get info to avoid violating the limit and banned by NCUCC)
 
