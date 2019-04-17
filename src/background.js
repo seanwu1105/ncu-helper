@@ -52,9 +52,7 @@ function writeDormNetflowData (dormNetflow) {
           const data = []
           tr.querySelectorAll('td').forEach((td, idx) => { data[idx] = td.innerText })
           ret.push({
-            // NOTE: the following `add` method is a workaround for apexchart issue:
-            // https://github.com/apexcharts/apexcharts.js/issues/110
-            time: moment(data[0]).add(8, 'hours').toString(),
+            time: moment(data[0]).toString(),
             externalUpload: data[1] * 1 || 0,
             externalDownload: data[2] * 1 || 0,
             totalUpload: data[3] * 1 || 0,
