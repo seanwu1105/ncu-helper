@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "NCU Helper",
-  "homepage_url": "https://github.com/GLaDOS1105/ncu-helper",
+  "homepage_url": "https://github.com/seanwu1105/ncu-helper",
   "description": "Add some features and change the design of NCU webpages in more modern style.",
   "icons": {
     "16": "icons/16.png",

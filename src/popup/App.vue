@@ -100,7 +100,7 @@ export default {
         bugReport: {
           title: '錯誤回報',
           action () {
-            open('https://github.com/GLaDOS1105/ncu-helper/issues')
+            open('https://github.com/seanwu1105/ncu-helper/issues')
           },
           icon: 'bug_report',
           disabled: false

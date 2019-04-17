@@ -148,11 +148,11 @@ export default {
         icon: 'email',
         tooltip: '開發者信箱'
       }, {
-        action () { open('https://github.com/GLaDOS1105/ncu-helper/issues') },
+        action () { open('https://github.com/seanwu1105/ncu-helper/issues') },
         icon: 'bug_report',
         tooltip: '錯誤回報'
       }, {
-        action () { open('https://github.com/GLaDOS1105/ncu-helper') },
+        action () { open('https://github.com/seanwu1105/ncu-helper') },
         icon: 'code',
         tooltip: 'GitHub'
       }]
