@@ -217,6 +217,6 @@ body {
   max-height: 70%;
 }
 .apexcharts-canvas.dark {
-  background: transparent;
+  background: transparent !important;
 }
 </style>
