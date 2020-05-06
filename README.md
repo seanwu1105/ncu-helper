@@ -64,6 +64,10 @@ Current only support Google Chrome.
 
 ## Developing
 
+### Dependency
+
+We use [asdf](https://asdf-vm.com/#/) for virtual development environment. The version of Node.js could be found in [.tool-versions](.tools-versions).
+
 ### Setting up Dev
 
 ``` bash
