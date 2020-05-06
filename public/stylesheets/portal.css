@@ -13,18 +13,6 @@ td[bgcolor] {
     background-color: initial !important;
 }
 
-/* iframe heights */
-.container-fluid,
-.row,
-.col-xs-12 {
-    height: inherit !important;
-}
-
-#myFrame {
-    height: 99% !important;
-    width: inherit !important;
-}
-
 /* bootstrap */
 .panel,
 .list-group-item {
