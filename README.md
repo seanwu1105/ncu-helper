@@ -9,6 +9,8 @@ Add some features and change the design of NCU web pages in a more modern style.
 
 ![wallpaper](https://i.imgur.com/YJOgTIK.png)
 
+__⚠️⚠️ Because I have graduated from NCU, it would be difficult for me to continually maintain this project.  ⚠️⚠️__
+
 ## Installing
 
 [![extension](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://goo.gl/YM69cw)
