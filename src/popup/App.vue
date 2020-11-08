@@ -32,6 +32,9 @@
     </v-toolbar>
     <v-content>
       <v-container fluid>
+        <v-alert :value="true" type="error">
+            因為本人已從中央大學畢業，無法使用 Portal 多項功能，更新不便， 將停止更新，若有任何熱心人士想要接手專案請<a href="mailto:seanwu1105@gmail.com" target="_blank">聯繫我</a>，謝謝。
+        </v-alert>
         <v-layout row wrap>
           <v-subheader>宿舍上傳流量</v-subheader>
           <v-spacer></v-spacer>

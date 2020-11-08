@@ -11,6 +11,8 @@ Add some features and change the design of NCU web pages in a more modern style.
 
 __⚠️⚠️ Because I have graduated from NCU, it would be difficult for me to continually maintain this project.  ⚠️⚠️__
 
+> If you want to continuely maintain the project, feel free to fork this project. I would be happy to update a notification to this extension to redirect users to your new extension. Contact me if you have any thought.
+
 ## Installing
 
 [![extension](https://developer.chrome.com/webstore/images/ChromeWebStore_BadgeWBorder_v2_206x58.png)](https://goo.gl/YM69cw)
